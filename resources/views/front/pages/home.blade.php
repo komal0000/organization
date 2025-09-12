@@ -65,20 +65,7 @@
     <div id="homefaq">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="title">Recently asked questions</div>
-                    <div class="subtitle">
-                        People are frequently asking some questions from us
-                    </div>
-                    <div class="semi">
-                        Proactively procrastinate cross-platform results via extensive ideas distinctively underwhelm enterprise. Compellingly plagiarize value-added sources with inexpensive schemas.
-                    </div>
-                    <div class="d-none d-md-block">
-                        <a href="/faqs" class="more">
-                            Get More Help
-                        </a>
-                    </div>
-                </div>
+                @includeIf('front.cache.homeFAQ')
                 <div class="col-md-6">
                     @includeIf('front.cache.home.faq')
 

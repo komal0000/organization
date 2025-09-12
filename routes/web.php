@@ -83,6 +83,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'contact',[SettingController::class,'contact'])->name('contact');
         Route::match(['GET','POST'],'meta',[SettingController::class,'meta'])->name('meta');
         Route::match(['GET','POST'],'password',[SettingController::class,'password'])->name('password');
+        Route::match(['GET','POST'],'homeFAQ',[SettingController::class,'homeFAQ'])->name('homeFAQ');
     });
 
 

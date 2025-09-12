@@ -27,6 +27,8 @@
     <hr class="my-1">
     <a class="link ps-1" href="{{route('admin.setting.general')}}">General Setting</a>
     <hr class="my-1">
+    <a class="link ps-1" href="{{route('admin.setting.homeFAQ')}}">Home FAQ Setting</a>
+    <hr class="my-1">
     <a class="link ps-1" href="{{route('admin.setting.donation')}}">Donation Setting</a>
     <hr class="my-1">
     <a class="link ps-1" href="{{route('admin.setting.fb')}}">FB Page Setting</a>
