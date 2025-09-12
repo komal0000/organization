@@ -11,5 +11,5 @@
             </a>
         </div>
     </div>
-    @include('front.cache.page.contact')
+    @includeIf('front.cache.page.contact')
 @endsection

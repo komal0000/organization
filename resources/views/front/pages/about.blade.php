@@ -12,10 +12,7 @@
         </div>
     </div>
 
-
-    @include('front.cache.page.about')
-
-
+    @includeIf('front.cache.page.about');
 @endsection
 @section('js')
 

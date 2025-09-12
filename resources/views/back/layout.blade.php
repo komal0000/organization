@@ -59,7 +59,7 @@
         <div class="col-md-10 pt-3 ">
             <div class="d-flex shadow align-items-center py-3 px-2 justify-content-between">
                 <div class="dashboard-links">
-                    <a href="Dashboard">Dashboard</a>
+                    <a href="{{ route('admin.index') }}">Dashboard</a>
                     @yield('head-title')
                 </div>
                 <div class="dashboard-buttons">

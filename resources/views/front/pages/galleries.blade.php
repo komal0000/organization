@@ -12,6 +12,6 @@
         </div>
     </div>
     <div class="py-5 container">
-        @include('front.cache.page.galleries')
+        @includeIf('front.cache.page.galleries')
     </div>
 @endsection

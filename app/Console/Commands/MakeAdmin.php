@@ -33,6 +33,7 @@ class MakeAdmin extends Command
         $user->email=$this->argument('email');
         $user->password=bcrypt( $this->argument('pass'));
         $user->save();
+        $this->info('Admin created successfully');
         return Command::SUCCESS;
     }
 }
