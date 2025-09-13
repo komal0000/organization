@@ -12,7 +12,7 @@
                     Compellingly plagiarize value-added sources with inexpensive schemas." }}
       </div>
       <div class="d-none d-md-block">
-          <a href="/faqs" class="more">
+          <a href="{{ route('faq') }}" class="more">
               {{ $data->bottom_text ?? 'More FAQ' }}
           </a>
       </div>

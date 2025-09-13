@@ -28,6 +28,14 @@
 
 body {
   font-family: var(--org-font);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content wrapper to push footer down */
+.main-content {
+  flex: 1;
 }
 
 .navbar {
@@ -1347,7 +1355,8 @@ body {
 }
 .footer {
   background-color: #283734;
-  padding: 100px;
+  padding: 50px;
+  margin-top: auto;
 }
 .footer #footerimg {
   max-height: 75px;
@@ -1402,9 +1411,20 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+  }
+
   .footer {
     overflow: hidden;
     padding: 15px;
+    margin-top: auto;
   }
   .footer #footerimg {
     max-height: 75px;

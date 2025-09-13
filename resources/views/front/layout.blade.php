@@ -18,7 +18,10 @@
 <body>
     @include('front.includes.navbar')
 
-    @yield('content')
+    <main class="main-content">
+        @yield('content')
+    </main>
+
     @include('front.includes.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
