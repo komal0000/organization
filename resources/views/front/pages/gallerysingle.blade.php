@@ -7,7 +7,6 @@
         <div class="text-center">
             <a href="{{route('home')}}">Home </a> /
             <a href="{{route('gallery')}}">Gallery </a> /
-            <br>
             <a class="active">
                 {{$gallery->title}}
             </a>

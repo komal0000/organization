@@ -6,26 +6,26 @@
         <div class="row">
             <div class="col-md-3">
                 @if (isset($generalSetting->footer_logo))
-                    <img  loading="lazy"  id="footerimg" src="{{ vasset($generalSetting->footer_logo) }}" alt="">
+                    <img loading="lazy" id="footerimg" src="{{ vasset($generalSetting->footer_logo) }}" alt="">
                 @endif
                 @if (isset($generalSetting->phone))
-                <div class="footeraddr mb-2 mt-2">
-                    {{$generalSetting->address}} <br>
-                    {{$generalSetting->district}} , {{$generalSetting->state}}, {{$generalSetting->country}}
-                </div>
-                <a class="iconlink mb-2" href="tel:{{$generalSetting->phone}}">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">wifi_calling_3</span>
+                    <div class="footeraddr mb-2 mt-2">
+                        {{ $generalSetting->address }} <br>
+                        {{ $generalSetting->district }} , {{ $generalSetting->state }}, {{ $generalSetting->country }}
                     </div>
-                    <div class="text text-white">{{$generalSetting->phone}}</div>
-                </a>
-                <a class="iconlink mb-5" href="mailto:{{$generalSetting->email}}">
-                    <div class="icon ">
-                        <span class="material-symbols-outlined">mail_outline</span>
-                    </div>
-                    <div class="text text-white">{{$generalSetting->email}}</div>
-                </a>
-                {{-- <hr class="text-white">
+                    <a class="iconlink mb-2" href="tel:{{ $generalSetting->phone }}">
+                        <div class="icon">
+                            <span class="material-symbols-outlined">wifi_calling_3</span>
+                        </div>
+                        <div class="text text-white">{{ $generalSetting->phone }}</div>
+                    </a>
+                    <a class="iconlink mb-5" href="mailto:{{ $generalSetting->email }}">
+                        <div class="icon ">
+                            <span class="material-symbols-outlined">mail_outline</span>
+                        </div>
+                        <div class="text text-white">{{ $generalSetting->email }}</div>
+                    </a>
+                    {{-- <hr class="text-white">
                 <div class="d-flex justify-content-start">
                     <a class="social" href="">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20px"
@@ -59,7 +59,7 @@
                             </path>
                         </svg>
                     </a> --}}
-            @endif
+                @endif
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-3 mb-4">
@@ -67,15 +67,13 @@
                     Important Links
                 </h4>
                 <hr class="text-white">
-                <a class="link" href="link">Link</a>
-                <a class="link" href="link">Link</a>
+                @includeIf('front.cache.footer-links')
             </div>
             <div class="col-md-3">
                 <div id="fb-root"></div>
-               @includeIf('front.cache.fb')
+                @includeIf('front.cache.fb')
             </div>
 
         </div>
     </div>
-</div>
 </div>

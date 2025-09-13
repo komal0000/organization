@@ -5,6 +5,7 @@ use App\Http\Controllers\Back\GalleryController;
 use App\Http\Controllers\Back\NoticeController;
 use App\Http\Controllers\Back\SliderController;
 use App\Http\Controllers\Back\TeamController;
+use App\Http\Controllers\FooterLinkController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingController;
@@ -87,5 +88,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'homeFAQ',[SettingController::class,'homeFAQ'])->name('homeFAQ');
     });
 
+    Route::prefix('footer-links')->name('footer-links.')->group(function(){
+        Route::get('', [FooterLinkController::class, 'index'])->name('index');
+        Route::get('create', [FooterLinkController::class, 'create'])->name('create');
+        Route::post('', [FooterLinkController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [FooterLinkController::class, 'edit'])->name('edit');
+        Route::put('{id}', [FooterLinkController::class, 'update'])->name('update');
+        Route::delete('{id}', [FooterLinkController::class, 'destroy'])->name('destroy');
+    });
 
 });

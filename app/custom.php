@@ -232,3 +232,12 @@ function cloudinaryUpload($filePath){
         (json_decode(json_encode($info)))->secure_url
     );
 }
+
+/**
+ * Get active footer links
+ */
+function getFooterLinks(){
+    return Cache::remember('footer_links', now()->addHours(24), function () {
+        return \App\Models\FooterLink::getActiveOrdered();
+    });
+}

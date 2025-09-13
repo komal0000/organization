@@ -105,6 +105,13 @@
                 <i class="fas fa-phone me-2"></i>Contact Setting
             </a>
         </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.footer-links.index')}}">
+                <i class="fas fa-link me-2"></i>Footer Links
+            </a>
+        </div>
     </nav>
 </div>
 
