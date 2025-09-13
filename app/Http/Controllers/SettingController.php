@@ -177,4 +177,64 @@ class SettingController extends Controller
             return back()->with('error', 'The current password is incorrect');
         }
     }
+
+    public function homeObjectives(Request $request)
+    {
+        if (isGet()) {
+            $data = getSetting('homeObjectives');
+            return view('back.setting.home-objectives', compact('data'));
+        } else {
+            $objectives = [];
+            if ($request->has('objectives')) {
+                foreach ($request->objectives as $index => $objective) {
+                    if (!empty($objective['title']) && !empty($objective['description'])) {
+                        $objectives[] = [
+                            'title' => $objective['title'],
+                            'description' => $objective['description'],
+                            'icon' => $objective['icon'] ?? 'fas fa-bullseye'
+                        ];
+                    }
+                }
+            }
+
+            $data = [
+                'section_title' => $request->section_title ?? 'Our Objectives',
+                'section_subtitle' => $request->section_subtitle ?? 'What we aim to achieve',
+                'objectives' => $objectives,
+                'is_active' => $request->has('is_active') ? 1 : 0,
+            ];
+            setSetting('homeObjectives', $data);
+
+            // Clear view cache before writing new cache file
+            Artisan::call('view:clear');
+            file_put_contents(resource_path('views/front/cache/home/objectives.blade.php'), view('back.setting.template.home-objectives', compact('data'))->render());
+            return redirect()->back()->with('message', 'Objectives Setting Updated');
+        }
+    }
+
+    public function homeVisionGoalsMission(Request $request)
+    {
+        if (isGet()) {
+            $data = getSetting('homeVisionGoalsMission');
+            return view('back.setting.home-vision-goals-mission', compact('data'));
+        } else {
+            $data = [
+                'vision_title' => $request->vision_title ?? 'Our Vision',
+                'vision_description' => $request->vision_description ?? 'Our vision for the future.',
+                'mission_title' => $request->mission_title ?? 'Our Mission',
+                'mission_description' => $request->mission_description ?? 'Our core mission and approach.',
+                'goals_title' => $request->goals_title ?? 'Our Goals',
+                'goals_description' => $request->goals_description ?? 'Our specific goals and targets.',
+                'section_title' => $request->section_title ?? 'Vision, Mission & Goals',
+                'section_subtitle' => $request->section_subtitle ?? 'Our direction and purpose',
+                'is_active' => $request->has('is_active') ? 1 : 0,
+            ];
+            setSetting('homeVisionGoalsMission', $data);
+
+            // Clear view cache before writing new cache file
+            Artisan::call('view:clear');
+            file_put_contents(resource_path('views/front/cache/home/vision-goals-mission.blade.php'), view('back.setting.template.home-vision-goals-mission', compact('data'))->render());
+            return redirect()->back()->with('message', 'Vision, Goals & Mission Setting Updated');
+        }
+    }
 }

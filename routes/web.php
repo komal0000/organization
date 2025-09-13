@@ -86,6 +86,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'meta',[SettingController::class,'meta'])->name('meta');
         Route::match(['GET','POST'],'password',[SettingController::class,'password'])->name('password');
         Route::match(['GET','POST'],'homeFAQ',[SettingController::class,'homeFAQ'])->name('homeFAQ');
+
+        // Home Settings
+        Route::match(['GET','POST'],'home-objectives',[SettingController::class,'homeObjectives'])->name('home-objectives');
+        Route::match(['GET','POST'],'home-vision-goals-mission',[SettingController::class,'homeVisionGoalsMission'])->name('home-vision-goals-mission');
     });
 
     Route::prefix('footer-links')->name('footer-links.')->group(function(){

@@ -72,9 +72,30 @@
         </div>
         <hr class="nav-divider">
 
+        <!-- Home Settings Subsection -->
+        <div class="nav-item mt-2">
+            <div class="nav-link text-muted small">
+                <i class="fas fa-home me-2"></i>HOME SETTINGS
+            </div>
+        </div>
+
         <div class="nav-item">
             <a class="nav-link" href="{{route('admin.setting.homeFAQ')}}">
-                <i class="fas fa-home me-2"></i>Home FAQ Setting
+                <i class="fas fa-question-circle me-2"></i>Home FAQ Setting
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.setting.home-objectives')}}">
+                <i class="fas fa-bullseye me-2"></i>Home Objectives
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.setting.home-vision-goals-mission')}}">
+                <i class="fas fa-eye me-2"></i>Vision, Goals & Mission
             </a>
         </div>
         <hr class="nav-divider">

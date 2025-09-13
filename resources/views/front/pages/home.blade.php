@@ -17,7 +17,8 @@
         </div>
 
     </div>
-
+    @includeIf('front.cache.home.vision-goals-mission')
+    @includeIf('front.cache.home.objectives')
     @if (config('app.has_donation'))
 
         @php
