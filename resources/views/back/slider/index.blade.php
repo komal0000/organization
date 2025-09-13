@@ -25,8 +25,12 @@
                 <img  loading="lazy"  src="{{vasset($slider->image)}}" style="height:100px" alt="slider image">
             </td>
             <td>
-                <a href="{{route('admin.slider.edit',['slider'=>$slider->id])}}" class="btn btn-primary">Edit</a>
-                <a href="{{route('admin.slider.del',['slider'=>$slider->id])}}" onclick="return confirm('Delete slider?');" class="btn btn-danger">Del</a>
+                <a href="{{route('admin.slider.edit',['slider'=>$slider->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{{route('admin.slider.del',['slider'=>$slider->id])}}" onclick="return confirm('Delete slider?');" class="btn btn-sm btn-danger" title="Delete">
+                    <i class="far fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
         @endforeach

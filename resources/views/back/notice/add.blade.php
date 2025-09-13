@@ -4,74 +4,101 @@
     <a href="#">Add</a>
 @endsection
 @section('toolbar')
+    <a href="{{ route('admin.notice.index', ['type' => $type]) }}" class="btn btn-admin-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to List
+    </a>
 @endsection
 @section('content')
-    <div class="mt-3 p-3 shadow">
-        <form action="{{ route('admin.notice.add', ['type' => $type]) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-2">
-                <label for="title">
-                    @if($type==6)
-                    Question
-                    @else
-                    Title
-                    @endif
-                </label>
-                <input type="text" name="title" class="form-control" data="Enter Title">
-            </div>
-            @if ($type!=4 &&  $type!=6 && $type!=7)
-            <div class="mb-2">
-                <label for="file">
-                    @if ($type == 1)
-                        Download File
-                    @else
-                        Image
-                    @endif
-                </label>
-                <input type="file" name="file" class="form-control dropify" data="Select File" required
-                    @if ($type != 1) accept="image/*" @endif>
-
-            </div>
-            @endif
-            @if ($type != 1 && $type != 2)
-                <div class="mb-2">
-                    <label for="short_desc">
-                        @if($type==6)
-                        Answer
-                        @elseif($type==8)
-                        Short About
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <i class="fas fa-plus me-2"></i>Add New {{ noticeType($type) }}
+        </div>
+        <div class="admin-card-body">
+            <form action="{{ route('admin.notice.add', ['type' => $type]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="admin-form-label">
+                        @if ($type == 6)
+                            <i class="fas fa-question-circle me-1"></i>Question
                         @else
-                        Short Description
+                            <i class="fas fa-heading me-1"></i>Title
                         @endif
                     </label>
-                    <textarea type="text" name="short_desc" class="form-control" data="Enter short description" required></textarea>
+                    <input type="text" name="title" class="form-control admin-form-control"
+                        placeholder="Enter {{ $type == 6 ? 'Question' : 'Title' }}">
+                    @error('title')
+                        <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
-            @endif
+                @if ($type != 4 && $type != 6 && $type != 7)
+                    <div class="mb-3">
+                        <label for="file" class="admin-form-label">
+                            @if ($type == 1)
+                                <i class="fas fa-download me-1"></i>Download File
+                            @else
+                                <i class="fas fa-image me-1"></i>Image
+                            @endif
+                        </label>
+                        <input type="file" name="file" class="form-control dropify" data-default-file=""
+                            @if ($type != 1) accept="image/*" @endif>
+                        @error('file')
+                            <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+                @endif
 
-            @if ($type == 2 || $type==7 || $type==8)
-                <div class="mb-2">
-                    <label for="desc">
-                        @if ($type == 2)
-                            Full News
-                        @elseif($type==8)
-                            Full About
-                        @endif
-                    </label>
-                    <textarea type="text" name="desc" id="desc" class="form-control" required></textarea>
-                </div>
-            @endif
-
-            <div>
-                <button class="btn btn-primary">
-                    Save {{ noticeType($type) }}
-                </button>
+        @if ($type != 1 && $type != 2)
+            <div class="mb-3">
+                <label for="short_desc" class="admin-form-label">
+                    @if ($type == 6)
+                        <i class="fas fa-comment me-1"></i>Answer
+                    @elseif($type == 8)
+                        Short About
+                    @else
+                        <i class="fas fa-align-left me-1"></i>Short Description
+                    @endif
+                </label>
+                <textarea name="short_desc" class="form-control admin-form-control" rows="3" placeholder="Enter short description"
+                    required></textarea>
+                @error('short_desc')
+                    <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
+                @enderror
             </div>
+        @endif
+
+        @if ($type == 2 || $type == 7 || $type == 8)
+            <div class="mb-3">
+                <label for="desc" class="admin-form-label">
+                    @if ($type == 2)
+                        <i class="fas fa-newspaper me-1"></i>Full News
+                    @elseif($type == 8)
+                        <i class="fas fa-info-circle me-1"></i>Full About
+                    @else
+                        <i class="fas fa-align-justify me-1"></i>Description
+                    @endif
+                </label>
+                <textarea name="desc" id="desc" class="form-control admin-form-control" required></textarea>
+                @error('desc')
+                    <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-admin-primary">
+                <i class="fas fa-save me-2"></i>Save {{ noticeType($type) }}
+            </button>
+            <a href="{{ route('admin.notice.index', ['type' => $type]) }}" class="btn btn-admin-secondary">
+                <i class="fas fa-times me-2"></i>Cancel
+            </a>
+        </div>
 
         </form>
     </div>
+    </div>
 @endsection
 @section('js')
-    @if ($type == 2 || $type==7 || $type==8)
+    @if ($type == 2 || $type == 7 || $type == 8)
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css"
             integrity="sha512-Fm8kRNVGCBZn0sPmwJbVXlqfJmPC13zRsMElZenX6v721g/H7OukJd8XzDEBRQ2FSATK8xNF9UYvzsCtUpfeJg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -104,9 +131,12 @@
 
                     plugins: {
                         upload: {
-                            serverPath: "{{route('admin.notice.image',['type'=>$type])}}",
+                            serverPath: "{{ route('admin.notice.image', ['type' => $type]) }}",
                             imageWidthModalEdit: true,
-                            data: [{name:"_token",value:"{{csrf_token()}}"}],
+                            data: [{
+                                name: "_token",
+                                value: "{{ csrf_token() }}"
+                            }],
                         }
                     }
                 });

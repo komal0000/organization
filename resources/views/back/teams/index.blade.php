@@ -48,8 +48,12 @@
                 {{$member->address}}
             </td>
             <td>
-                <a href="{{route('admin.team.edit',['team'=>$member->id])}}" class="btn btn-sm btn-primary">Edit</a>
-                <a href="{{route('admin.team.del',['team'=>$member->id])}}" class="btn btn-sm btn-danger" onclick="return confirm('Delete member');">Delete</a>
+                <a href="{{route('admin.team.edit',['team'=>$member->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{{route('admin.team.del',['team'=>$member->id])}}" class="btn btn-sm btn-danger" onclick="return confirm('Delete member?');" title="Delete">
+                    <i class="far fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
         @endforeach

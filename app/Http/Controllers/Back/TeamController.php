@@ -82,5 +82,11 @@ class TeamController extends Controller
 
         return redirect()->back();
     }
+    public function unsetMain($id){
+        Notice::where('type',4)->where('id',$id)->update(['is_main'=>0]);
+        $this->render();
+
+        return redirect()->back();
+    }
 
 }

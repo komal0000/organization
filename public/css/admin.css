@@ -1,0 +1,655 @@
+/* Admin Panel Styling with Modern Color Scheme */
+:root {
+    /* Color Variables - Matching Frontend */
+    --admin-primary: #F4891F;    /* Orange */
+    --admin-secondary: #074463;  /* Dark Blue */
+    --admin-accent: #FAAC19;     /* Yellow */
+    --admin-gray: #6f7775;
+    --admin-light-gray: #f8f9fa;
+    --admin-dark: #283734;
+    --admin-white: #ffffff;
+    --admin-border: #eee9db;
+
+    /* Admin Specific Colors */
+    --admin-sidebar-bg: #074463;
+    --admin-sidebar-text: #ffffff;
+    --admin-sidebar-hover: #F4891F;
+    --admin-header-bg: #ffffff;
+    --admin-content-bg: #f8f9fa;
+    --admin-card-bg: #ffffff;
+    --admin-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --admin-shadow-hover: 0 4px 8px rgba(0,0,0,0.15);
+
+    /* Typography */
+    --admin-font: 'Nunito', sans-serif;
+    --admin-font-weight-normal: 400;
+    --admin-font-weight-medium: 500;
+    --admin-font-weight-bold: 600;
+
+    /* Spacing */
+    --admin-border-radius: 8px;
+    --admin-padding: 1rem;
+    --admin-margin: 1rem;
+}
+
+/* Global Admin Styles */
+body {
+    font-family: var(--admin-font) !important;
+    background-color: var(--admin-content-bg) !important;
+    color: var(--admin-dark);
+}
+
+/* Admin Layout Container */
+.admin-container {
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.admin-sidebar {
+    background: linear-gradient(180deg, var(--admin-sidebar-bg) 0%, #0a5a7a 100%);
+    min-height: 100vh;
+    padding: 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+}
+
+.admin-sidebar h5 {
+    color: var(--admin-white);
+    font-weight: var(--admin-font-weight-bold);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin: 0;
+    background: rgba(0,0,0,0.1);
+    border-bottom: 2px solid var(--admin-primary);
+}
+
+.admin-sidebar .sidebar-nav {
+    padding: 1rem 0;
+}
+
+.admin-sidebar .nav-item {
+    margin: 0.25rem 0;
+}
+
+.admin-sidebar .nav-link {
+    color: var(--admin-sidebar-text);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: var(--admin-font-weight-medium);
+    border-radius: 0;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    display: block;
+}
+
+.admin-sidebar .nav-link:hover {
+    background-color: rgba(244, 137, 31, 0.1);
+    border-left-color: var(--admin-primary);
+    color: var(--admin-white);
+    transform: translateX(5px);
+}
+
+.admin-sidebar .nav-link.active {
+    background-color: var(--admin-primary);
+    border-left-color: var(--admin-accent);
+    color: var(--admin-white);
+}
+
+.admin-sidebar .nav-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 0.5rem 1rem;
+}
+
+/* Main Content Area */
+.admin-main {
+    padding: 0;
+}
+
+/* Header Styling */
+.admin-header {
+    background: var(--admin-header-bg);
+    box-shadow: var(--admin-shadow);
+    border-radius: var(--admin-border-radius);
+    margin: 1rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-breadcrumb {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-breadcrumb a {
+    color: var(--admin-gray);
+    text-decoration: none;
+    font-weight: var(--admin-font-weight-medium);
+    position: relative;
+}
+
+.admin-breadcrumb a:hover {
+    color: var(--admin-primary);
+}
+
+.admin-breadcrumb a:not(:last-child)::after {
+    content: "/";
+    margin-left: 0.5rem;
+    color: var(--admin-gray);
+    font-weight: normal;
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Content Area */
+.admin-content {
+    padding: 1rem;
+}
+
+/* Card Styling */
+.admin-card {
+    background: var(--admin-card-bg);
+    border-radius: var(--admin-border-radius);
+    box-shadow: var(--admin-shadow);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--admin-border);
+    transition: box-shadow 0.3s ease;
+}
+
+.admin-card:hover {
+    box-shadow: var(--admin-shadow-hover);
+}
+
+.admin-card-header {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-accent) 100%);
+    color: var(--admin-white);
+    padding: 1rem 1.5rem;
+    font-weight: var(--admin-font-weight-bold);
+    border-bottom: none;
+}
+
+.admin-card-body {
+    padding: 1.5rem;
+}
+
+/* Button Styling */
+.btn-admin-primary {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-accent) 100%);
+    border: none;
+    color: var(--admin-white);
+    font-weight: var(--admin-font-weight-medium);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--admin-border-radius);
+    transition: all 0.3s ease;
+}
+
+.btn-admin-primary:hover {
+    background: linear-gradient(135deg, #e07817 0%, #e09d15 100%);
+    color: var(--admin-white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(244, 137, 31, 0.3);
+}
+
+.btn-admin-secondary {
+    background: var(--admin-secondary);
+    border: 1px solid var(--admin-secondary);
+    color: var(--admin-white);
+    font-weight: var(--admin-font-weight-medium);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--admin-border-radius);
+    transition: all 0.3s ease;
+}
+
+.btn-admin-secondary:hover {
+    background: #0a5a7a;
+    border-color: #0a5a7a;
+    color: var(--admin-white);
+    transform: translateY(-1px);
+}
+
+.btn-admin-outline {
+    background: transparent;
+    border: 2px solid var(--admin-primary);
+    color: var(--admin-primary);
+    font-weight: var(--admin-font-weight-medium);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--admin-border-radius);
+    transition: all 0.3s ease;
+}
+
+.btn-admin-outline:hover {
+    background: var(--admin-primary);
+    color: var(--admin-white);
+}
+
+/* Form Styling */
+.admin-form-control {
+    border: 2px solid var(--admin-border);
+    border-radius: var(--admin-border-radius);
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+.admin-form-control:focus {
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(244, 137, 31, 0.1);
+}
+
+.admin-form-label {
+    font-weight: var(--admin-font-weight-bold);
+    color: var(--admin-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* Table Styling */
+.admin-table {
+    background: var(--admin-white);
+    border-radius: var(--admin-border-radius);
+    overflow: hidden;
+    box-shadow: var(--admin-shadow);
+}
+
+.admin-table th {
+    background: var(--admin-secondary);
+    color: var(--admin-white);
+    font-weight: var(--admin-font-weight-bold);
+    border: none;
+    padding: 1rem;
+}
+
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--admin-border);
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+    background-color: rgba(244, 137, 31, 0.05);
+}
+
+/* Alert Styling */
+.admin-alert {
+    border-radius: var(--admin-border-radius);
+    border: none;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.admin-alert-success {
+    background: rgba(40, 167, 69, 0.1);
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.admin-alert-error {
+    background: rgba(220, 53, 69, 0.1);
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.admin-alert-warning {
+    background: rgba(250, 172, 25, 0.1);
+    color: #856404;
+    border-left: 4px solid var(--admin-accent);
+}
+
+.admin-alert-info {
+    background: rgba(7, 68, 99, 0.1);
+    color: #0c5460;
+    border-left: 4px solid var(--admin-secondary);
+}
+
+/* Dashboard Stats Cards */
+.admin-stat-card {
+    background: var(--admin-white);
+    border-radius: var(--admin-border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--admin-shadow);
+    border-left: 4px solid var(--admin-primary);
+    transition: transform 0.3s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--admin-shadow-hover);
+}
+
+.admin-stat-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: var(--admin-font-weight-bold);
+    color: var(--admin-primary);
+    margin: 0;
+}
+
+.admin-stat-card .stat-label {
+    color: var(--admin-gray);
+    font-weight: var(--admin-font-weight-medium);
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: fixed;
+        left: -100%;
+        width: 280px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    .admin-sidebar.show {
+        left: 0;
+    }
+
+    .admin-main {
+        margin-left: 0;
+    }
+
+    .admin-header {
+        margin: 0.5rem;
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .admin-breadcrumb {
+        justify-content: center;
+    }
+}
+
+/* Utility Classes */
+.text-admin-primary { color: var(--admin-primary) !important; }
+.text-admin-secondary { color: var(--admin-secondary) !important; }
+.text-admin-accent { color: var(--admin-accent) !important; }
+.bg-admin-primary { background-color: var(--admin-primary) !important; }
+.bg-admin-secondary { background-color: var(--admin-secondary) !important; }
+.bg-admin-accent { background-color: var(--admin-accent) !important; }
+
+/* Loading Animation */
+.admin-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(244, 137, 31, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--admin-primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--admin-light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--admin-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e07817;
+}
+
+/* Toastr Customization */
+.toast-success {
+    background-color: var(--admin-primary) !important;
+}
+
+.toast-error {
+    background-color: #dc3545 !important;
+}
+
+.toast-info {
+    background-color: var(--admin-secondary) !important;
+}
+
+.toast-warning {
+    background-color: var(--admin-accent) !important;
+}
+
+/* Dropify Customization */
+.dropify-wrapper {
+    border: 2px dashed var(--admin-border) !important;
+    border-radius: var(--admin-border-radius) !important;
+    transition: border-color 0.3s ease;
+}
+
+.dropify-wrapper:hover {
+    border-color: var(--admin-primary) !important;
+}
+
+.dropify-wrapper .dropify-message p {
+    color: var(--admin-gray) !important;
+    font-size: 1rem !important;
+}
+
+.dropify-wrapper .dropify-infos {
+    background: var(--admin-primary) !important;
+    color: var(--admin-white) !important;
+}
+
+.dropify-wrapper .dropify-infos .dropify-infos-inner {
+    padding: 10px 15px !important;
+}
+
+.dropify-wrapper .dropify-clear {
+    background: #dc3545 !important;
+    border: none !important;
+    color: var(--admin-white) !important;
+}
+
+.dropify-wrapper .dropify-clear:hover {
+    background: #c82333 !important;
+}
+
+/* Trumbowyg Editor Customization */
+.trumbowyg-box {
+    border: 2px solid var(--admin-border) !important;
+    border-radius: var(--admin-border-radius) !important;
+}
+
+.trumbowyg-editor {
+    min-height: 200px !important;
+}
+
+.trumbowyg-button-pane {
+    background: var(--admin-light-gray) !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+}
+
+.trumbowyg-button-pane .trumbowyg-button-group .trumbowyg-btn {
+    border-radius: 4px !important;
+    margin: 2px !important;
+}
+
+.trumbowyg-button-pane .trumbowyg-button-group .trumbowyg-btn:hover {
+    background: var(--admin-primary) !important;
+    color: var(--admin-white) !important;
+}
+
+.trumbowyg-button-pane .trumbowyg-button-group .trumbowyg-btn.trumbowyg-active {
+    background: var(--admin-secondary) !important;
+    color: var(--admin-white) !important;
+}
+
+/* Bootstrap Dropdown Customization */
+.dropdown-menu {
+    border: 1px solid var(--admin-border);
+    border-radius: var(--admin-border-radius);
+    box-shadow: var(--admin-shadow);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(244, 137, 31, 0.1);
+    color: var(--admin-primary);
+}
+
+/* Badge Customization */
+.badge {
+    font-weight: var(--admin-font-weight-medium);
+}
+
+.bg-admin-primary {
+    background-color: var(--admin-primary) !important;
+}
+
+.bg-admin-secondary {
+    background-color: var(--admin-secondary) !important;
+}
+
+.bg-admin-accent {
+    background-color: var(--admin-accent) !important;
+    color: var(--admin-dark) !important;
+}
+
+/* Loading States */
+.btn[disabled], .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    color: var(--admin-white);
+}
+
+/* Sidebar Active State */
+.admin-sidebar .nav-link[href*="{{ request()->url() }}"] {
+    background-color: var(--admin-primary);
+    border-left-color: var(--admin-accent);
+    color: var(--admin-white);
+}
+
+/* Print Styles */
+@media print {
+    .admin-sidebar,
+    .admin-header,
+    .admin-toolbar {
+        display: none !important;
+    }
+
+    .admin-main {
+        margin-left: 0 !important;
+    }
+
+    .admin-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+/* Enhanced Delete Button Styling */
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+    border: none !important;
+     padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease !important;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3) !important;
+}
+
+.btn-danger:active {
+    transform: translateY(0) !important;
+}
+
+/* Gallery Delete Button Positioning */
+.del {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    font-size: 12px !important;
+    opacity: 0.9 !important;
+}
+
+.del:hover {
+    opacity: 1 !important;
+}
+
+/* Icon improvements for delete buttons */
+.far.fa-trash-alt {
+    font-size: 14px;
+}
+
+/* Confirmation dialog styling */
+.swal2-popup {
+    border-radius: var(--admin-border-radius) !important;
+}
+
+.swal2-confirm {
+    background: var(--admin-primary) !important;
+    border-radius: var(--admin-border-radius) !important;
+}
+
+.swal2-cancel {
+    background: #6c757d !important;
+    border-radius: var(--admin-border-radius) !important;
+}
+
+/* Main Status Button Styling */
+.btn-success.disabled {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    border: none !important;
+    color: white !important;
+    cursor: default !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3) !important;
+}
+
+.btn-success.disabled:hover {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    transform: none !important;
+}
+
+/* Crown icon styling */
+.fa-crown {
+    color: #ffd700 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}

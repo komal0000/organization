@@ -17,56 +17,48 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <style>
-            body{
-                background-color: #fafafa;
-            }
-        </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
     <title>{{ config('app.name') }} @yield('title')</title>
-    <style>
-        .dashboard-links a:not(:last-child)::after {
-            content: "/";
-            margin: 0 5px;
-            /* Adjust the spacing as needed */
-        }
-
-        .dashboard-links a {
-            color: rgb(81, 81, 81);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .dashboard-links a:hover {
-            color: rgb(85, 85, 255);
-        }
-
-        .dropify-wrapper .dropify-message p {
-            font-size: 1rem;
-        }
-        label{
-            margin-bottom:10px;
-            font-weight: 600;
-        }
-    </style>
 </head>
 
 <body>
-
-    <div class="row m-0">
-        <div class="col-md-2">
-            @include('back.sidebar')
-        </div>
-        <div class="col-md-10 pt-3 ">
-            <div class="d-flex shadow align-items-center py-3 px-2 justify-content-between">
-                <div class="dashboard-links">
-                    <a href="{{ route('admin.index') }}">Dashboard</a>
-                    @yield('head-title')
+    <div class="admin-container">
+        <div class="row m-0 g-0">
+            <div class="col-lg-2 col-md-3">
+                @include('back.sidebar')
+            </div>
+            <div class="col-lg-10 col-md-9 admin-main">
+                <div class="admin-header">
+                    <div class="admin-breadcrumb">
+                        <a href="{{ route('admin.index') }}">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                        </a>
+                        @yield('head-title')
+                    </div>
+                    <div class="admin-toolbar">
+                        @yield('toolbar')
+                        <div class="dropdown">
+                            <button class="btn btn-admin-outline dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown">
+                                <i class="fas fa-user me-1"></i>Admin
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('admin.setting.password') }}">
+                                    <i class="fas fa-key me-2"></i>Change Password
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="return confirm('Do you want to logout?')">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="dashboard-buttons">
-                    @yield('toolbar')
+                <div class="admin-content">
+                    @yield('content')
                 </div>
             </div>
-            @yield('content')
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

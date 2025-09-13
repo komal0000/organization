@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'edit/{team}',[TeamController::class,'edit'])->name('edit');
         Route::get('del/{team}',[TeamController::class,'del'])->name('del');
         Route::get('setmain/{id}',[TeamController::class,'setMain'])->name('setmain');
+        Route::get('unsetmain/{id}',[TeamController::class,'unsetMain'])->name('unsetmain');
     });
 
     Route::prefix('gallery')->name('gallery.')->group(function(){
