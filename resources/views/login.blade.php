@@ -21,7 +21,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #F4891F 0%, #074463 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -124,8 +124,8 @@
 
         .form-control:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #F4891F;
+            box-shadow: 0 0 0 3px rgba(244, 137, 31, 0.1);
             transform: translateY(-2px);
         }
 
@@ -140,13 +140,13 @@
         }
 
         .form-control:focus + .input-icon {
-            color: #667eea;
+            color: #F4891F;
         }
 
         .btn-login {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #F4891F 0%, #074463 100%);
             border: none;
             border-radius: 12px;
             color: white;
@@ -242,7 +242,7 @@
         .logo-placeholder {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #F4891F 0%, #074463 100%);
             border-radius: 20px;
             margin: 0 auto 20px;
             display: flex;

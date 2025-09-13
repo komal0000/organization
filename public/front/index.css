@@ -11,19 +11,19 @@
   --org-gray-rgb: 111, 119, 117;
   --org-white: #ffffff;
   --org-white-rgb: 255, 255, 255;
-  --org-base: #00715d;
-  --org-base-rgb: 0, 113, 93;
+  --org-base: #F4891F;
+  --org-base-rgb: 244, 137, 31;
   --org-black: #283734;
   --org-black-rgb: 40, 55, 52;
-  --org-primary: #fbd45a;
-  --org-primary-rgb: 251, 212, 90;
+  --org-primary: #FAAC19;
+  --org-primary-rgb: 250, 172, 25;
   --org-extra: #f9f4e8;
   --org-extra-rgb: 249, 244, 232;
   --org-bdr-color: #eee9db;
   --org-bdr-color-rgb: 238, 233, 219;
   --org-bdr-radius: 20px;
-  --org-nav:#90c8be;
-  --org-blue:#214F77;
+  --org-nav:#F4891F;
+  --org-blue:#074463;
 }
 
 body {
@@ -99,7 +99,7 @@ body {
 }
 .navbar .navbar-bottom .link {
   text-decoration: none;
-  color: var(--org-nav);
+  color: var(--org-extra);
   font-weight: 500;
   font-size: 15px;
   padding-right: 20px;
@@ -190,7 +190,7 @@ body {
 .sidebar .exit {
   transition: 2s all;
   width: 0%;
-  background-color: rgba(33, 79, 119, 0.1);
+  background-color: rgba(7, 68, 99, 0.1);
 }
 
 .mobile-top {
@@ -1303,7 +1303,7 @@ body {
   right: 0px;
   background-color: rgba(0, 0, 0, 0.2);
   background: rgb(0, 0, 0);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(128, 108, 46, 0.2273284314) 51%, rgb(251, 212, 90) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(250, 172, 25, 0.3) 51%, rgb(250, 172, 25) 100%);
   display: flex;
   align-items: end;
   justify-content: center;

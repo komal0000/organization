@@ -67,7 +67,7 @@
         text-transform: uppercase;
         .link{
             text-decoration: none;
-            color: var(--org-nav);
+            color: var(--org-extra);
             font-weight: 500;
             font-size: 15px;
             padding-right: 20px;
@@ -166,7 +166,7 @@
     .exit{
         transition: 2s all;
         width: 0%;
-        background-color: rgba($color: #214F77, $alpha: 0.1);
+        background-color: rgba($color: #074463, $alpha: 0.1);
     }
 }
 
