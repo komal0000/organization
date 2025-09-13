@@ -3,7 +3,9 @@
     <a href="#">Sliders</a>
 @endsection
 @section('toolbar')
-    <a href="{{route('admin.slider.add')}}" class="btn btn-sm btn-primary">Add Slider</a>
+    <a href="{{route('admin.slider.add')}}" class="btn btn-admin-primary">
+        <i class="fas fa-plus me-2"></i>Add Slider
+    </a>
 @endsection
 @section('content')
 <div class="mt-3 p-3 shadow">

@@ -67,13 +67,6 @@ class TeamController extends Controller
 
     }
 
-    public function render(){
-        $notice=Notice::where('type',4)->where('is_main',1)->first();
-        if($notice!=null){
-            $teams=Team::where('notice_id',$notice->id)->take(4)->get();
-            file_put_contents(resource_path('views/front/cache/home/members.blade.php'),view('back.notice.template.homemembers',compact('notice','teams'))->render());
-        }
-    }
 
     public function setMain($id){
         Notice::where('type',4)->update(['is_main'=>0]);
@@ -89,4 +82,11 @@ class TeamController extends Controller
         return redirect()->back();
     }
 
+    public function render(){
+        $notice=Notice::where('type',4)->where('is_main',1)->first();
+        if($notice!=null){
+            $teams=Team::where('notice_id',$notice->id)->take(4)->get();
+            file_put_contents(resource_path('views/front/cache/home/members.blade.php'),view('back.notice.template.homemembers',compact('notice','teams'))->render());
+        }
+    }
 }

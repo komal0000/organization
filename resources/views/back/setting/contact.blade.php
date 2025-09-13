@@ -1,35 +1,49 @@
 @extends('back.layout')
 @section('head-title')
-    <a href="#">Setting</a>
-    <a href="#">contact</a>
+    <a href="#">Settings</a>
+    <a href="#">Contact</a>
 @endsection
 @section('content')
-    <div class="mt-3 p-3 shadow">
-        <input class="form-control" type="text" id="map" value="{{$data->map??""}}" required placeholder="Enter location and press enter" onchange="setMap(this.value);" >
-        <hr>
-        <div class="row">
-            <div class="col-12">
-                <div style="overflow:hidden;resize:none;width:100%;height:300px;">
-                    <div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
-                        <iframe id="mapiframe"
-                            style="height:100%;width:100%;border:0;" frameborder="0"
-                            src="">
-                        </iframe>
-                    </div>
-                    <style>
-                        #embed-map-display img {
-                            max-height: none;
-                            max-width: none !important;
-                            background: none !important;
-                        }
-                    </style>
-                </div>
-            </div>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <i class="fas fa-map-marker-alt me-2"></i>Contact Location Settings
+    </div>
+    <div class="admin-card-body">
+        <div class="mb-3">
+            <label for="map" class="admin-form-label">
+                <i class="fas fa-search-location me-1"></i>Location Search
+            </label>
+            <input class="form-control admin-form-control" type="text" id="map" value="{{$data->map??""}}" required placeholder="Enter location and press enter to set map" onchange="setMap(this.value);">
+        </div>
 
-            <div class="col-12 mt-2">
-                <button class="btn btn-primary" onclick="save()"> Save Setting</button>
+        <div class="mb-3">
+            <label class="admin-form-label">
+                <i class="fas fa-map me-1"></i>Map Preview
+            </label>
+            <div style="overflow:hidden;resize:none;width:100%;height:300px;border:1px solid var(--org-border-light);border-radius:5px;">
+                <div id="embed-map-display" style="height:100%; width:100%;max-width:100%;">
+                    <iframe id="mapiframe"
+                        style="height:100%;width:100%;border:0;" frameborder="0"
+                        src="">
+                    </iframe>
+                </div>
+                <style>
+                    #embed-map-display img {
+                        max-height: none;
+                        max-width: none !important;
+                        background: none !important;
+                    }
+                </style>
             </div>
         </div>
+
+        <div class="d-flex gap-2">
+            <button class="btn btn-admin-primary" onclick="save()">
+                <i class="fas fa-save me-2"></i>Save Location
+            </button>
+        </div>
+    </div>
+</div>
         {{-- <hr>
         <h5>
             Contact Personals
