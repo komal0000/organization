@@ -71,7 +71,7 @@
                                             <i class="fas fa-star"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('admin.team.unsetmain',['id'=>$notice->id]) }}" class="btn btn-sm btn-success" style="display: flex; align-items: center;" title="Main Committee">
+                                        <a href="{{ route('admin.team.unsetmain',['id'=>$notice->id]) }}" class="btn btn-sm btn-success disabled" style="display: flex; align-items: center;" title="Main Committee">
                                             <i class="fas fa-crown me-1"></i>Main
                                         </a>
                                     @endif
