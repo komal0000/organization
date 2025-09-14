@@ -68,6 +68,7 @@
             <a href="{{route('about')}}" class="link">About Us</a>
             <a href="{{route('issues')}}" class="link">Issues</a>
             <a href="{{route('gallery')}}" class="link">Gallery</a>
+            <a href="{{ route('registration') }}" class="link">Registration</a>
             <a href="{{route('faq')}}" class="link">Help</a>
             <a href="{{route('contact')}}" class="link">Contact</a>
             @if (config('app.has_donation'))
@@ -132,6 +133,7 @@
             <a href="{{route('about')}}" class="link">About Us</a>
             <a href="{{route('issues')}}" class="link">Issues</a>
             <a href="{{route('gallery')}}" class="link">Gallery</a>
+            <a href="{{ route('registration') }}" class="link">Registration</a>
             <a href="{{route('faq')}}" class="link">Help</a>
             <a href="{{route('contact')}}" class="link">Contact</a>
             @if (config('app.has_donation'))

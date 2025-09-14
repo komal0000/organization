@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Back\DashboardController;
+use App\Http\Controllers\Back\FormController;
 use App\Http\Controllers\Back\GalleryController;
 use App\Http\Controllers\Back\NoticeController;
 use App\Http\Controllers\Back\SliderController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Back\TeamController;
 use App\Http\Controllers\FooterLinkController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PublicFormController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +38,17 @@ use Illuminate\Support\Facades\Route;
     Route::get('/committees/{slug}', [HomeController::class,'committeeSingle'])->name('committee.single');
     Route::get('/issues/{slug}', [HomeController::class,'issueSingle'])->name('issue.single');
     Route::get('/about/{slug}', [HomeController::class,'aboutSingle'])->name('about.single');
+
+    // Public Form Routes
+    Route::get('/registration', function() {
+        $form = App\Models\Form::where('is_active', true)->first();
+        if (!$form) {
+            abort(404, 'Registration form not found');
+        }
+        return redirect()->route('forms.show', $form->slug);
+    })->name('registration');
+    Route::get('/forms/{slug}', [PublicFormController::class, 'show'])->name('forms.show');
+    Route::post('/forms/{slug}', [PublicFormController::class, 'submit'])->name('forms.submit');
 
 
 Route::match(['GET','POST'],'login',[LoginController::class,'login'])->name('login');
@@ -101,5 +114,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::put('{id}', [FooterLinkController::class, 'update'])->name('update');
         Route::delete('{id}', [FooterLinkController::class, 'destroy'])->name('destroy');
     });
+
+    // Admin Form Routes
+    Route::get('forms', [FormController::class, 'index'])->name('admin_form_index');
+    Route::get('forms/create', [FormController::class, 'create'])->name('admin_form_create');
+    Route::post('forms', [FormController::class, 'store'])->name('admin_form_store');
+    Route::get('forms/{form}/edit', [FormController::class, 'edit'])->name('admin_form_edit');
+    Route::post('forms/{form}', [FormController::class, 'update'])->name('admin_form_update');
+    Route::get('forms/{form}/delete', [FormController::class, 'destroy'])->name('admin_form_delete');
+
+    // Form Field Management
+    Route::post('forms/{form}/fields', [FormController::class, 'addField'])->name('admin_form_add_field');
+    Route::post('forms/{form}/fields/{field}', [FormController::class, 'updateField'])->name('admin_form_update_field');
+    Route::get('forms/{form}/fields/{field}/delete', [FormController::class, 'deleteField'])->name('admin_form_delete_field');
+
+    // Form Responses
+    Route::get('forms/{form}/responses', [FormController::class, 'responses'])->name('admin_form_responses');
+    Route::get('forms/{form}/responses/{response}/delete', [FormController::class, 'deleteResponse'])->name('admin_form_delete_response');
 
 });

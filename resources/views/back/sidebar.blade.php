@@ -140,6 +140,18 @@
                 <i class="fas fa-link me-2"></i>Footer Links
             </a>
         </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            @php
+                $firstForm = App\Models\Form::first();
+            @endphp
+            @if($firstForm)
+                <a class="nav-link" href="{{route('admin.admin_form_edit', $firstForm->id)}}">
+                    <i class="fas fa-wpforms me-2"></i>Registration Form
+                </a>
+            @endif
+        </div>
     </nav>
 </div>
 
