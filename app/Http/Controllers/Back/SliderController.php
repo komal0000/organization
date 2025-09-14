@@ -32,20 +32,18 @@ class SliderController extends Controller
 
     public function edit(Request $request,Slider $slider){
         if(isGet()){
-
             return view('back.slider.edit',compact('slider'));
         }else{
+            // dd($request->all(),$slider);
             $slider->title=$request->title??"";
             $slider->subtitle=$request->subtitle??"";
             $slider->link=$request->link??'';
             $slider->btntitle=$request->btntitle??'';
-            if($request->hasFile('slider')){
-
+            if($request->hasFile('image')){
                 $slider->image=$request->image->store('uploads/slider');
             }
-            if($request->hasFile('mobile_slider')){
+            if($request->hasFile('mobile_image')){
                 $slider->mobile_image=$request->mobile_image->store('uploads/slider');
-
             }
             $slider->save();
             $this->render();
