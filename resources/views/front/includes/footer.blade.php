@@ -71,6 +71,8 @@
             </div>
             <div class="col-md-3">
                 <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous"
+                    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0&appId=756239680582627"></script>
                 @includeIf('front.cache.fb')
             </div>
 
