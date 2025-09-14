@@ -38,7 +38,7 @@ body {
   position: sticky;
   top: 0px;
   z-index: 99;
-  box-shadow: 0px 0px 1px 0px #d4d4d4;
+  box-shadow: 0px 0px 2px 0px #F18721;
 }
 .navbar .logo {
   margin-left: 50px;
