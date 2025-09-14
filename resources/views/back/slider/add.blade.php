@@ -21,7 +21,7 @@
                         <label for="title" class="admin-form-label">
                             <i class="fas fa-heading me-1"></i>Title
                         </label>
-                        <input type="text" class="form-control admin-form-control" id="title" name="title" placeholder="Enter slider title" required>
+                        <input type="text" class="form-control admin-form-control" id="title" name="title" placeholder="Enter slider title" >
                         @error('title')
                             <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
                         @enderror
@@ -60,7 +60,7 @@
                     <label for="subtitle" class="admin-form-label">
                         <i class="fas fa-align-left me-1"></i>Subtitle
                     </label>
-                    <textarea class="form-control admin-form-control" id="subtitle" name="subtitle" rows="3" placeholder="Enter slider subtitle" required></textarea>
+                    <textarea class="form-control admin-form-control" id="subtitle" name="subtitle" rows="3" placeholder="Enter slider subtitle"></textarea>
                     @error('subtitle')
                         <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
                     @enderror
