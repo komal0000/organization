@@ -101,6 +101,13 @@
         <hr class="nav-divider">
 
         <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.setting.home-statistics')}}">
+                <i class="fas fa-chart-line me-2"></i>Home Statistics
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
             <a class="nav-link" href="{{route('admin.setting.donation')}}">
                 <i class="fas fa-donate me-2"></i>Donation Setting
             </a>

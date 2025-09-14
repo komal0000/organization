@@ -90,6 +90,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         // Home Settings
         Route::match(['GET','POST'],'home-objectives',[SettingController::class,'homeObjectives'])->name('home-objectives');
         Route::match(['GET','POST'],'home-vision-goals-mission',[SettingController::class,'homeVisionGoalsMission'])->name('home-vision-goals-mission');
+        Route::match(['GET','POST'],'home-statistics',[SettingController::class,'homeStatistics'])->name('home-statistics');
     });
 
     Route::prefix('footer-links')->name('footer-links.')->group(function(){

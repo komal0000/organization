@@ -187,10 +187,9 @@ class SettingController extends Controller
             $objectives = [];
             if ($request->has('objectives')) {
                 foreach ($request->objectives as $index => $objective) {
-                    if (!empty($objective['title']) && !empty($objective['description'])) {
+                    if (!empty($objective['title'])) {
                         $objectives[] = [
                             'title' => $objective['title'],
-                            'description' => $objective['description'],
                             'icon' => $objective['icon'] ?? 'fas fa-bullseye'
                         ];
                     }
@@ -235,6 +234,40 @@ class SettingController extends Controller
             Artisan::call('view:clear');
             file_put_contents(resource_path('views/front/cache/home/vision-goals-mission.blade.php'), view('back.setting.template.home-vision-goals-mission', compact('data'))->render());
             return redirect()->back()->with('message', 'Vision, Goals & Mission Setting Updated');
+        }
+    }
+
+    public function homeStatistics(Request $request)
+    {
+        if (isGet()) {
+            $data = getSetting('homeStatistics');
+            return view('back.setting.home-statistics', compact('data'));
+        } else {
+            $statistics = [];
+            if ($request->has('statistics')) {
+                foreach ($request->statistics as $index => $statistic) {
+                    if (!empty($statistic['title']) && !empty($statistic['value'])) {
+                        $statistics[] = [
+                            'title' => $statistic['title'],
+                            'value' => $statistic['value'],
+                            'icon' => $statistic['icon'] ?? 'fas fa-chart-line'
+                        ];
+                    }
+                }
+            }
+
+            $data = [
+                'section_title' => $request->section_title ?? 'Our Impact',
+                'section_subtitle' => $request->section_subtitle ?? 'Making a difference together',
+                'statistics' => $statistics,
+                'is_active' => $request->has('is_active') ? 1 : 0,
+            ];
+            setSetting('homeStatistics', $data);
+
+            // Clear view cache before writing new cache file
+            // Artisan::call('view:clear');
+            file_put_contents(resource_path('views/front/cache/home/statistics.blade.php'), view('back.setting.template.home-statistics', compact('data'))->render());
+            return redirect()->back()->with('message', 'Statistics Setting Updated');
         }
     }
 }

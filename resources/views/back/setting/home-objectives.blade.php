@@ -69,7 +69,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="admin-form-label">Icon (Font Awesome)</label>
                                             <input type="text" name="objectives[{{ $index }}][icon]" class="form-control admin-form-control"
-                                                   value="{{ $objective->icon ?? 'fas fa-bullseye' }}" placeholder="fas fa-bullseye">
+                                                   value="{{ $objective->icon ?? 'fas fa-bullseye-arrow' }}" placeholder="fas fa-bullseye-arrow">
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="admin-form-label">Icon (Font Awesome)</label>
                                         <input type="text" name="objectives[0][icon]" class="form-control admin-form-control"
-                                               value="fas fa-bullseye" placeholder="fas fa-bullseye">
+                                               value="fas fa-bullseye-arrow" placeholder="fas fa-bullseye-arrow">
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="col-md-6 mb-3">
                         <label class="admin-form-label">Icon (Font Awesome)</label>
                         <input type="text" name="objectives[${objectiveIndex}][icon]" class="form-control admin-form-control"
-                               value="fas fa-bullseye" placeholder="fas fa-bullseye">
+                               value="fas fa-bullseye-arrow" placeholder="fas fa-bullseye-arrow">
                     </div>
                 </div>
             </div>

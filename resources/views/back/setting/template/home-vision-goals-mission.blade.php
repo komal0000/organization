@@ -53,7 +53,7 @@
             <div class="col-lg-4 col-md-12 mb-4">
                 <div class="vmg-card goals-card h-100">
                     <div class="vmg-icon">
-                        <i class="fas fa-target"></i>
+                        <i class="fas fa-bullseye"></i>
                     </div>
                     <div class="vmg-content">
                         @if(isset($data['goals_title']))
