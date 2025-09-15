@@ -61,15 +61,14 @@
                     </a> --}}
                 @endif
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-3 mb-4">
+            <div class="col-md-5 mb-4">
                 <h4 class="text-white font-two">
                     Important Links
                 </h4>
                 <hr class="text-white">
                 @includeIf('front.cache.footer-links')
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div id="fb-root"></div>
                 <script async defer crossorigin="anonymous"
                     src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v23.0&appId=756239680582627"></script>
