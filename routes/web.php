@@ -14,6 +14,8 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Admin\MembershipContentController;
 use App\Http\Controllers\Admin\MembershipApplicationController;
 use App\Http\Controllers\Admin\RegistrationApplicationController;
+use App\Http\Controllers\Admin\ProgramController as AdminProgramController;
+use App\Http\Controllers\Front\ProgramController;
 use App\Http\Controllers\PublicFormController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +58,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('/membership', [MembershipController::class, 'index'])->name('membership.index');
     Route::post('/membership', [MembershipController::class, 'store'])->name('membership.store');
     Route::get('/membership/success', [MembershipController::class, 'success'])->name('membership.success');
+
+    // Programs Routes
+    Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+    Route::get('/programs/{program:slug}', [ProgramController::class, 'show'])->name('programs.show');
 
 
 Route::match(['GET','POST'],'login',[LoginController::class,'login'])->name('login');
@@ -148,5 +154,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
     // Registration Applications Management
     Route::resource('registration-applications', RegistrationApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
     Route::get('registration-applications-export', [RegistrationApplicationController::class, 'export'])->name('registration-applications.export');
+
+    // Programs Management
+    Route::resource('programs', AdminProgramController::class);
+    Route::post('programs/toggle-status/{program}', [AdminProgramController::class, 'toggleStatus'])->name('programs.toggle-status');
+    Route::post('programs/update-order', [AdminProgramController::class, 'updateOrder'])->name('programs.update-order');
 
 });

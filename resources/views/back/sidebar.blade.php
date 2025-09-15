@@ -9,12 +9,12 @@
         </div>
         <hr class="nav-divider">
 
-        <div class="nav-item">
+        {{-- <div class="nav-item">
             <a class="nav-link" href="{{route('admin.notice.index',['type'=>2])}}">
                 <i class="fas fa-newspaper me-2"></i>News
             </a>
         </div>
-        <hr class="nav-divider">
+        <hr class="nav-divider"> --}}
 
         <div class="nav-item">
             <a class="nav-link" href="{{route('admin.notice.index',['type'=>4])}}">
@@ -37,12 +37,12 @@
         </div>
         <hr class="nav-divider">
 
-        <div class="nav-item">
+        {{-- <div class="nav-item">
             <a class="nav-link" href="{{route('admin.notice.index',['type'=>7])}}">
                 <i class="fas fa-exclamation-triangle me-2"></i>Issues
             </a>
         </div>
-        <hr class="nav-divider">
+        <hr class="nav-divider"> --}}
 
         <div class="nav-item">
             <a class="nav-link" href="{{route('admin.notice.index',['type'=>8])}}">
@@ -54,6 +54,13 @@
         <div class="nav-item">
             <a class="nav-link" href="{{route('admin.slider.index')}}">
                 <i class="fas fa-sliders-h me-2"></i>Sliders
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.programs.index')}}">
+                <i class="fas fa-clipboard-list me-2"></i>Programs
             </a>
         </div>
         <hr class="nav-divider">
