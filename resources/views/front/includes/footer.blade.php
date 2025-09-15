@@ -4,7 +4,7 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 @if (isset($generalSetting->footer_logo))
                     <img loading="lazy" id="footerimg" src="{{ vasset($generalSetting->footer_logo) }}" alt="">
                 @endif
@@ -61,7 +61,7 @@
                     </a> --}}
                 @endif
             </div>
-            <div class="col-md-5 mb-4">
+            <div class="col-md-4 mb-4">
                 <h4 class="text-white font-two">
                     Important Links
                 </h4>
