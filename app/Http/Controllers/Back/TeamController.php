@@ -29,7 +29,9 @@ class TeamController extends Controller
             $team->address=$request->address??"";
             $team->phone=$request->phone??"";
             $team->email=$request->email??"";
-            $team->image=$request->image->store('uploads/members');
+            if($request->hasFile('image')){
+                $team->image=$request->image->store('uploads/members');
+            }
             $team->save();
             $this->render();
             delMember($team->notice_id);

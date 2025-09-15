@@ -15,7 +15,7 @@
 
                 <div class="col-md-4 mb-2">
                     <label for="image">Mobile Image</label>
-                    <input type="file" class="form-control dropify" name="image" id="image" required accept="image/*">
+                    <input type="file" class="form-control dropify" name="image" id="image"  accept="image/*">
                 </div>
                 <div class="col-md-8 mb-2">
                     <div class="row">

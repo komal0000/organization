@@ -23,14 +23,24 @@
                 @foreach ($members as $member)
                     <div class="col-md-4 mb-4">
                         <div class="modern-card text-center">
-                            <div class="mb-3">
-                                <img loading="lazy" src="{{ asset($member->image) }}"
-                                     alt="{{ $member->name }}"
-                                 class="img-fluid rounded-circle"
-                                 style="width: 120px; height: 120px; object-fit: cover;">
+                            @if ($member->image)
+                                <div class="mb-3">
+                                    <img loading="lazy" src="{{ asset($member->image) }}" alt="{{ $member->name }}"
+                                        class="img-fluid rounded-circle"
+                                        style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
+                            @else
+                                <div class="mb-3">
+                                    <img loading="lazy"
+                                        src="{{ asset('front/img/employee-faceless-man-avatar-headshot-vector-54411540-removebg-preview.png') }}"
+                                        alt="{{ $member->name }} - Professional Avatar" class="img-fluid rounded-circle"
+                                        style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
+                            @endif
+                            <h5 class="card-title">{{ $member->name }}</h5>
+                            <p class="modern-text-muted">{{ $member->desig }}</p>
                         </div>
-                        <h5 class="card-title">{{ $member->name }}</h5>
-                        <p class="modern-text-muted">{{ $member->desig }}</p>
+
                     </div>
                 @endforeach
             </div>
