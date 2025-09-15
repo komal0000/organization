@@ -24,7 +24,7 @@ class RegistrationController extends Controller
             return view('front.registration.unavailable');
         }
 
-        return view('front.registration.index', compact('form'));
+        return view('front.form.show', compact('form'));
     }
 
     /**
