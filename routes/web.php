@@ -10,8 +10,10 @@ use App\Http\Controllers\FooterLinkController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\Admin\MembershipContentController;
 use App\Http\Controllers\Admin\MembershipApplicationController;
+use App\Http\Controllers\Admin\RegistrationApplicationController;
 use App\Http\Controllers\PublicFormController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
@@ -42,14 +44,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('/issues/{slug}', [HomeController::class,'issueSingle'])->name('issue.single');
     Route::get('/about/{slug}', [HomeController::class,'aboutSingle'])->name('about.single');
 
-    // Public Form Routes
-    Route::get('/registration', function() {
-        $form = App\Models\Form::where('is_active', true)->first();
-        if (!$form) {
-            abort(404, 'Registration form not found');
-        }
-        return redirect()->route('forms.show', $form->slug);
-    })->name('registration');
+    // Registration Routes
+    Route::get('/registration', [RegistrationController::class, 'index'])->name('registration');
+    Route::post('/registration', [RegistrationController::class, 'store'])->name('registration.store');
+    Route::get('/registration/success', [RegistrationController::class, 'success'])->name('registration.success');
     Route::get('/csic',[PublicFormController::class,'csic'])->name('csic');
     Route::get('/forms/{slug}', [PublicFormController::class, 'show'])->name('forms.show');
     Route::post('/forms/{slug}', [PublicFormController::class, 'submit'])->name('forms.submit');
@@ -146,5 +144,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
 
     // Membership Applications Management
     Route::resource('membership-applications', MembershipApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
+
+    // Registration Applications Management
+    Route::resource('registration-applications', RegistrationApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::get('registration-applications-export', [RegistrationApplicationController::class, 'export'])->name('registration-applications.export');
 
 });

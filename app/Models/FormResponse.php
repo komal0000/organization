@@ -13,11 +13,15 @@ class FormResponse extends Model
         'form_id',
         'ip_address',
         'user_agent',
-        'responses'
+        'responses',
+        'status',
+        'submitted_at',
+        'admin_notes'
     ];
 
     protected $casts = [
-        'responses' => 'array'
+        'responses' => 'array',
+        'submitted_at' => 'datetime'
     ];
 
     public function form()

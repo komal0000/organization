@@ -170,7 +170,14 @@
 
         <div class="nav-item">
             <a class="nav-link" href="{{route('admin.membership-applications.index')}}">
-                <i class="fas fa-user-check me-2"></i>Applications
+                <i class="fas fa-user-check me-2"></i>Membership Applications
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.registration-applications.index')}}">
+                <i class="fas fa-file-alt me-2"></i>Registration Applications
             </a>
         </div>
     </nav>
