@@ -24,6 +24,20 @@
     --org-bdr-radius: 20px;
     --org-nav:#F4891F;
     --org-blue:#074463;
+
+    // Modern gradient and color scheme
+    --org-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --org-gradient-secondary: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+    --org-gradient-yellow: linear-gradient(135deg, #f4891f 0%, #faac19 100%);
+    --org-modern-blue: #4285f4;
+    --org-modern-blue-dark: #3367d6;
+    --org-modern-green: #34a853;
+    --org-modern-green-dark: #137333;
+    --org-light-gray: #f8f9fa;
+    --org-border-light: #e9ecef;
+    --org-text-muted: #666;
+    --org-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    --org-shadow-hover: 0 5px 15px rgba(66, 133, 244, 0.4);
 }
 
 

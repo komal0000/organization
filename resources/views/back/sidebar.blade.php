@@ -152,6 +152,27 @@
                 </a>
             @endif
         </div>
+        <hr class="nav-divider">
+
+        <!-- Membership Section -->
+        <div class="nav-item mt-3">
+            <div class="nav-link text-muted small">
+                <i class="fas fa-users me-2"></i>MEMBERSHIP
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.membership-content.index')}}">
+                <i class="fas fa-edit me-2"></i>Page Content
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
+            <a class="nav-link" href="{{route('admin.membership-applications.index')}}">
+                <i class="fas fa-user-check me-2"></i>Applications
+            </a>
+        </div>
     </nav>
 </div>
 

@@ -14,7 +14,7 @@
 }
 
 .form-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f4891f 0%, #faac19 100%);
     color: white;
     padding: 30px;
     border-radius: 8px 8px 0 0;
@@ -81,7 +81,7 @@
 }
 
 .form-input:focus {
-    border-bottom: 2px solid #1a73e8;
+    border-bottom: 2px solid #f4891f;
 }
 
 .form-input::placeholder {
@@ -102,8 +102,8 @@
 }
 
 .form-textarea:focus {
-    border-color: #1a73e8;
-    box-shadow: 0 0 0 1px #1a73e8;
+    border-color: #f4891f;
+    box-shadow: 0 0 0 1px #f4891f;
 }
 
 .form-select {
@@ -118,8 +118,8 @@
 }
 
 .form-select:focus {
-    border-color: #1a73e8;
-    box-shadow: 0 0 0 1px #1a73e8;
+    border-color: #f4891f;
+    box-shadow: 0 0 0 1px #f4891f;
 }
 
 .radio-group, .checkbox-group {
@@ -135,7 +135,7 @@
 
 .radio-item input, .checkbox-item input {
     margin-right: 12px;
-    accent-color: #1a73e8;
+    accent-color: #f4891f;
 }
 
 .radio-item label, .checkbox-item label {
@@ -154,7 +154,7 @@
 }
 
 .file-upload:hover {
-    border-color: #1a73e8;
+    border-color: #f4891f;
 }
 
 .file-upload input[type="file"] {
@@ -163,7 +163,7 @@
 
 .file-upload-label {
     cursor: pointer;
-    color: #1a73e8;
+    color: #f4891f;
     font-weight: 500;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .submit-btn {
-    background: #1a73e8;
+    background: #f4891f;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -195,12 +195,12 @@
 }
 
 .submit-btn:hover {
-    background: #1557b0;
+    background: #faac19;
 }
 
 .clear-btn {
     background: none;
-    color: #1a73e8;
+    color: #f4891f;
     border: none;
     padding: 12px 24px;
     border-radius: 4px;

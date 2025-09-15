@@ -3,50 +3,47 @@
     @includeIf('front.cache.home.meta')
 @endsection
 @section('content')
-<div class="jumbotron">
+<div class="jumbotron modern">
     <div class="text-center">
-        <a href="{{route('home')}}">Home </a> /
-        <a href="{{route('news')}}">News </a>
-        <br>
-        <a class="active">
-            {{$newsSingle->title}}
-        </a>
+        <h1>{{$newsSingle->title}}</h1>
+        <p>{{noticeDate($newsSingle)}}</p>
+        <div class="mt-3">
+            <a href="{{route('home')}}">Home</a> /
+            <a href="{{route('news')}}">News</a> /
+            <a class="active">{{Str::limit($newsSingle->title, 30)}}</a>
+        </div>
     </div>
 </div>
-<div id="news-page-single" class="py-5">
+
+<div class="modern-content-section">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="image">
-                    <img  loading="lazy"  class="w-100" src="{{vasset($newsSingle->file)}}" alt="">
-                    <div class="date">
-                        {{noticeDate($newsSingle)}}
+                <div class="modern-card">
+                    <div class="mb-4">
+                        <img loading="lazy" class="w-100 rounded" src="{{vasset($newsSingle->file)}}" alt="{{$newsSingle->title}}">
                     </div>
-                </div>
 
-                <div class="title">
-                    {{$newsSingle->title}}
-                </div>
+                    <h2 class="modern-section-title">{{$newsSingle->title}}</h2>
 
                 <div class="full">
-                    {!! $newsSingle->desc !!}
+                    <div class="modern-text-content">
+                        {!! $newsSingle->desc !!}
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="extra">
-                    <div class="extra-title">
-                        Latest News
-                    </div>
-                    @foreach ($newsAll->take(6) as $news)
-                    <a href="{{route('news.single',['slug'=>$news->s])}}" class="extra-single">
-                        {{$news->t}}
-                        <br>
-                        <small>
-                            {{$news->date}}
-                        </small>
-                    </a>
-                    <hr class="m-0">
+                <div class="modern-card">
+                    <h5 class="card-title mb-4">Latest News</h5>
 
+                    @foreach ($newsAll->take(6) as $news)
+                        <a href="{{route('news.single',['slug'=>$news->s])}}" class="modern-news-item d-block mb-3 text-decoration-none">
+                            <div class="fw-bold mb-1">{{$news->t}}</div>
+                            <small class="modern-text-muted">{{$news->date}}</small>
+                        </a>
+                        @if (!$loop->last)
+                            <hr class="my-3">
+                        @endif
                     @endforeach
                 </div>
             </div>

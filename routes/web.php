@@ -9,6 +9,9 @@ use App\Http\Controllers\Back\TeamController;
 use App\Http\Controllers\FooterLinkController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\Admin\MembershipContentController;
+use App\Http\Controllers\Admin\MembershipApplicationController;
 use App\Http\Controllers\PublicFormController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
@@ -47,8 +50,14 @@ use Illuminate\Support\Facades\Route;
         }
         return redirect()->route('forms.show', $form->slug);
     })->name('registration');
+    Route::get('/csic',[PublicFormController::class,'csic'])->name('csic');
     Route::get('/forms/{slug}', [PublicFormController::class, 'show'])->name('forms.show');
     Route::post('/forms/{slug}', [PublicFormController::class, 'submit'])->name('forms.submit');
+
+    // Membership Routes
+    Route::get('/membership', [MembershipController::class, 'index'])->name('membership.index');
+    Route::post('/membership', [MembershipController::class, 'store'])->name('membership.store');
+    Route::get('/membership/success', [MembershipController::class, 'success'])->name('membership.success');
 
 
 Route::match(['GET','POST'],'login',[LoginController::class,'login'])->name('login');
@@ -131,5 +140,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
     // Form Responses
     Route::get('forms/{form}/responses', [FormController::class, 'responses'])->name('admin_form_responses');
     Route::get('forms/{form}/responses/{response}/delete', [FormController::class, 'deleteResponse'])->name('admin_form_delete_response');
+
+    // Membership Content Management
+    Route::resource('membership-content', MembershipContentController::class);
+
+    // Membership Applications Management
+    Route::resource('membership-applications', MembershipApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
 
 });

@@ -3,17 +3,16 @@
     @includeIf('front.cache.home.meta')
 @endsection
 @section('content')
-    <div class="jumbotron">
+    <div class="jumbotron modern">
         <div class="text-center">
-            <a href="{{ route('home') }}">Home </a> /
-            <a class="active">
-                Issues
-            </a>
+            <h1>Issues & Concerns</h1>
+            <p>Important matters and initiatives we're addressing</p>
         </div>
     </div>
 
-    @includeIf('front.cache.page.issues')
-
+    <div class="modern-content-section">
+        @includeIf('front.cache.page.issues')
+    </div>
 @endsection
 @section('js')
 

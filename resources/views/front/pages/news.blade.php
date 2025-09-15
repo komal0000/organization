@@ -3,19 +3,23 @@
     @includeIf('front.cache.home.meta')
 @endsection
 @section('content')
-    <div class="jumbotron">
-        <div >
-            <a href="{{route('home')}}">Home </a> /
-            <a class="active">
-                News
-            </a>
+    <div class="jumbotron modern">
+        <div class="text-center">
+            <h1>Latest News</h1>
+            <p>Stay updated with our latest news and announcements</p>
+            <div class="mt-3">
+                <a href="{{ route('home') }}">Home</a> /
+                <a class="active">News</a>
+            </div>
         </div>
     </div>
-    <div class="py-5 container">
-        <div class="row" id="news"></div>
-        <div class=" mt-3 mt-md-5" id="newspagination"></div>
-    </div>
 
+    <div class="modern-content-section">
+        <div class="container">
+            <div class="row" id="news"></div>
+            <div class="mt-3 mt-md-5" id="newspagination"></div>
+        </div>
+    </div>
 @endsection
 @section('js')
     @include('front.includes.page')

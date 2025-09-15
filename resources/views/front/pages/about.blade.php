@@ -3,16 +3,22 @@
     @includeIf('front.cache.home.meta')
 @endsection
 @section('content')
-    <div class="jumbotron">
+    <div class="jumbotron modern">
         <div class="text-center">
-            <a href="{{ route('home') }}">Home </a> /
-            <a class="active">
-                About Us
-            </a>
+            <h1>About Us</h1>
+            <p>Learn more about our organization, mission, and values</p>
+            <div class="mt-3">
+                <a href="{{ route('home') }}">Home</a> /
+                <a class="active">About Us</a>
+            </div>
         </div>
     </div>
 
-    @includeIf('front.cache.page.about');
+    <div class="modern-content-section">
+        <div class="container">
+            @includeIf('front.cache.page.about')
+        </div>
+    </div>
 @endsection
 @section('js')
 

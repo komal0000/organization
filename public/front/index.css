@@ -24,6 +24,18 @@
   --org-bdr-radius: 20px;
   --org-nav:#F4891F;
   --org-blue:#074463;
+  --org-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --org-gradient-secondary: linear-gradient(135deg, #4285f4 0%, #3367d6 100%);
+  --org-gradient-yellow: linear-gradient(135deg, #f4891f 0%, #faac19 100%);
+  --org-modern-blue: #4285f4;
+  --org-modern-blue-dark: #3367d6;
+  --org-modern-green: #34a853;
+  --org-modern-green-dark: #137333;
+  --org-light-gray: #f8f9fa;
+  --org-border-light: #e9ecef;
+  --org-text-muted: #666;
+  --org-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --org-shadow-hover: 0 5px 15px rgba(66, 133, 244, 0.4);
 }
 
 body {
@@ -1279,6 +1291,249 @@ body {
     color: var(--org-primary);
   }
 }
+.jumbotron {
+  padding: 20px 10px;
+  background: var(--org-gray);
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--org-white);
+}
+.jumbotron a {
+  text-decoration: none;
+  color: var(--org-white);
+}
+.jumbotron a.active {
+  color: var(--org-primary);
+}
+.jumbotron a:hover {
+  color: var(--org-primary);
+}
+.jumbotron.modern {
+  background-color: linear-gradient(135deg, #f4891f 0%, #faac19 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f4891f 0%, #faac19 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  color: white;
+  padding: 60px 20px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.jumbotron.modern h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+.jumbotron.modern p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.jumbotron.modern a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+.jumbotron.modern a:hover, .jumbotron.modern a.active {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.jumbotron.modern .text-center {
+  position: relative;
+  z-index: 2;
+}
+
+.modern-content-section {
+  padding: 60px 0;
+  background-color: var(--org-light-gray, #f8f9fa);
+}
+
+.modern-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--org-black);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.modern-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--org-shadow, 0 20px 60px rgba(0, 0, 0, 0.1));
+  border: 1px solid var(--org-border-light, #e9ecef);
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+.modern-card:hover {
+  box-shadow: var(--org-shadow-hover, 0 5px 15px rgba(66, 133, 244, 0.4));
+  transform: translateY(-2px);
+}
+.modern-card .card-title {
+  color: var(--org-black);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modern-grid {
+  display: grid;
+  gap: 2rem;
+}
+.modern-grid.modern-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.modern-grid.modern-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.modern-grid.modern-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.modern-grid.modern-grid-6 {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.btn-modern-primary {
+  background: var(--org-gradient-yellow);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 137, 31, 0.3);
+}
+.btn-modern-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(244, 137, 31, 0.4);
+  color: white;
+  background: linear-gradient(135deg, var(--org-primary) 0%, var(--org-base) 100%);
+}
+.btn-modern-primary.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+}
+.btn-modern-primary.btn-lg {
+  padding: 16px 32px;
+  font-size: 1.125rem;
+}
+
+.btn-org-primary {
+  background-color: var(--org-primary);
+  border: none;
+  color: var(--org-black);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.btn-org-primary:hover {
+  background-color: var(--org-base);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-org-outline {
+  background: transparent;
+  border: 2px solid var(--org-base);
+  color: var(--org-base);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.btn-org-outline:hover {
+  background: var(--org-base);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.modern-text-muted {
+  color: var(--org-text-muted, #666);
+  font-size: 0.9rem;
+}
+
+.modern-text-content {
+  line-height: 1.8;
+  color: var(--org-black);
+}
+.modern-text-content p {
+  margin-bottom: 1.5rem;
+}
+.modern-text-content h1,
+.modern-text-content h2,
+.modern-text-content h3,
+.modern-text-content h4,
+.modern-text-content h5,
+.modern-text-content h6 {
+  color: var(--org-black);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+.modern-text-content h1:first-child,
+.modern-text-content h2:first-child,
+.modern-text-content h3:first-child,
+.modern-text-content h4:first-child,
+.modern-text-content h5:first-child,
+.modern-text-content h6:first-child {
+  margin-top: 0;
+}
+
+.modern-gallery-item {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.modern-gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+.modern-gallery-item img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.modern-news-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--org-border-light, #e9ecef);
+  transition: all 0.3s ease;
+}
+.modern-news-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  padding-left: 0.5rem;
+}
+.modern-news-item:last-child {
+  border-bottom: none;
+}
+
 .galleries .gallery-single {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
   display: block;

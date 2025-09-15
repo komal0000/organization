@@ -73,4 +73,9 @@ class PublicFormController extends Controller
 
         return view('front.form.success', compact('form'));
     }
+
+    public function csic()
+    {
+        return view('front.pages.csic');
+    }
 }
