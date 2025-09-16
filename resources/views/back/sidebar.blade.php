@@ -3,7 +3,7 @@
 
     <nav class="sidebar-nav">
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>1])}}">
+            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 1]) }}">
                 <i class="fas fa-bell me-2"></i>Notices
             </a>
         </div>
@@ -17,21 +17,21 @@
         <hr class="nav-divider"> --}}
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>4])}}">
+            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 4]) }}">
                 <i class="fas fa-users me-2"></i>Committees
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>5])}}">
+            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 5]) }}">
                 <i class="fas fa-images me-2"></i>Galleries
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>6])}}">
+            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 6]) }}">
                 <i class="fas fa-question-circle me-2"></i>FAQ
             </a>
         </div>
@@ -45,33 +45,32 @@
         <hr class="nav-divider"> --}}
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>8])}}">
+            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 8]) }}">
                 <i class="fas fa-info-circle me-2"></i>About Us
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.slider.index')}}">
+            <a class="nav-link" href="{{ route('admin.slider.index') }}">
                 <i class="fas fa-sliders-h me-2"></i>Sliders
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.programs.index')}}">
+            <a class="nav-link" href="{{ route('admin.programs.index') }}">
                 <i class="fas fa-clipboard-list me-2"></i>Programs
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.events.index')}}">
+            <a class="nav-link" href="{{ route('admin.events.index') }}">
                 <i class="fas fa-calendar-alt me-2"></i>Events
             </a>
         </div>
         <hr class="nav-divider">
-
         <!-- Content Management Section -->
         <div class="nav-item mt-3">
             <div class="nav-link text-muted small">
@@ -80,23 +79,13 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.footer-links.index')}}">
+            <a class="nav-link" href="{{ route('admin.footer-links.index') }}">
                 <i class="fas fa-link me-2"></i>Footer Links
             </a>
         </div>
         <hr class="nav-divider">
 
-        <div class="nav-item">
-            @php
-                $firstForm = App\Models\Form::first();
-            @endphp
-            @if($firstForm)
-                <a class="nav-link" href="{{route('admin.admin_form_edit', $firstForm->id)}}">
-                    <i class="fas fa-wpforms me-2"></i>Registration Form
-                </a>
-            @endif
-        </div>
-        <hr class="nav-divider">
+
 
         <!-- Settings Section -->
         <div class="nav-item mt-3">
@@ -106,7 +95,7 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.general')}}">
+            <a class="nav-link" href="{{ route('admin.setting.general') }}">
                 <i class="fas fa-cogs me-2"></i>General Setting
             </a>
         </div>
@@ -120,56 +109,56 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.homeFAQ')}}">
+            <a class="nav-link" href="{{ route('admin.setting.homeFAQ') }}">
                 <i class="fas fa-question-circle me-2"></i>Home FAQ Setting
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.home-objectives')}}">
+            <a class="nav-link" href="{{ route('admin.setting.home-objectives') }}">
                 <i class="fas fa-bullseye me-2"></i>Home Objectives
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.home-vision-goals-mission')}}">
+            <a class="nav-link" href="{{ route('admin.setting.home-vision-goals-mission') }}">
                 <i class="fas fa-eye me-2"></i>Vision, Goals & Mission
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.home-statistics')}}">
+            <a class="nav-link" href="{{ route('admin.setting.home-statistics') }}">
                 <i class="fas fa-chart-line me-2"></i>Home Statistics
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.donation')}}">
+            <a class="nav-link" href="{{ route('admin.setting.donation') }}">
                 <i class="fas fa-donate me-2"></i>Donation Setting
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.fb')}}">
+            <a class="nav-link" href="{{ route('admin.setting.fb') }}">
                 <i class="fab fa-facebook me-2"></i>FB Page Setting
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.meta')}}">
+            <a class="nav-link" href="{{ route('admin.setting.meta') }}">
                 <i class="fas fa-share-alt me-2"></i>Sharing Setting
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.setting.contact')}}">
+            <a class="nav-link" href="{{ route('admin.setting.contact') }}">
                 <i class="fas fa-phone me-2"></i>Contact Setting
             </a>
         </div>
@@ -183,22 +172,46 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.membership-content.index')}}">
+            <a class="nav-link" href="{{ route('admin.membership-content.index') }}">
                 <i class="fas fa-edit me-2"></i>Page Content
             </a>
         </div>
         <hr class="nav-divider">
 
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.membership-applications.index')}}">
+            <a class="nav-link" href="{{ route('admin.membership-applications.index') }}">
                 <i class="fas fa-user-check me-2"></i>Membership Applications
             </a>
         </div>
         <hr class="nav-divider">
 
+
+        <div class="nav-item mt-3">
+            <div class="nav-link text-muted small">
+                <i class="fas fa-users me-2"></i>CSIC
+            </div>
+        </div>
+        <hr class="nav-divider">
         <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.registration-applications.index')}}">
+            @php
+                $firstForm = App\Models\Form::first();
+            @endphp
+            @if ($firstForm)
+                <a class="nav-link" href="{{ route('admin.admin_form_edit', $firstForm->id) }}">
+                    <i class="fas fa-wpforms me-2"></i>Registration Form
+                </a>
+            @endif
+        </div>
+        <hr class="nav-divider">
+        <div class="nav-item">
+            <a class="nav-link" href="{{ route('admin.registration-applications.index') }}">
                 <i class="fas fa-file-alt me-2"></i>Registration Applications
+            </a>
+        </div>
+        <hr class="nav-divider">
+        <div class="nav-item">
+            <a class="nav-link" href="{{ route('admin.essential-files.index') }}">
+                <i class="fas fa-file-download me-2"></i>Essential Files
             </a>
         </div>
     </nav>
@@ -210,7 +223,7 @@
         color: #ecf0f1;
         min-height: 100vh;
         padding: 20px 0;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .admin-sidebar h5 {
@@ -348,4 +361,3 @@
         font-weight: 600;
     }
 </style>
-

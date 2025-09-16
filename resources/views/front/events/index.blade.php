@@ -489,7 +489,6 @@
         <div class="container">
             <div class="section-title">
                 <h2>{{ $type === 'upcoming' ? 'Upcoming Events' : ($type === 'past' ? 'Past Events' : 'All Events') }}</h2>
-                <p>{{ $events->total() }} event{{ $events->total() != 1 ? 's' : '' }} found</p>
             </div>
 
             <!-- Search and Filters -->

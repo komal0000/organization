@@ -76,6 +76,7 @@ class PublicFormController extends Controller
 
     public function csic()
     {
-        return view('front.pages.csic');
+        $essentialFiles = \App\Models\EssentialFile::active()->ordered()->get();
+        return view('front.pages.csic', compact('essentialFiles'));
     }
 }

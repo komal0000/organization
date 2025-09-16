@@ -271,7 +271,7 @@
                 if (editorInstance) {
                     const content = editorInstance.getData();
                     $('#content').val(content);
-                    
+
                     // Check if content is empty
                     if (!content.trim()) {
                         e.preventDefault();

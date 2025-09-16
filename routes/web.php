@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProgramController as AdminProgramController;
 use App\Http\Controllers\Front\ProgramController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Front\EventController;
+use App\Http\Controllers\Admin\EssentialFileController;
 use App\Http\Controllers\PublicFormController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,9 @@ use Illuminate\Support\Facades\Route;
     // Events Routes
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events/{event:slug}', [EventController::class, 'show'])->name('events.show');
+
+    // Essential Files Download
+    Route::get('/essential-files/download/{id}', [EssentialFileController::class, 'download'])->name('essential-files.download');
 
 
 Route::match(['GET','POST'],'login',[LoginController::class,'login'])->name('login');
@@ -164,7 +168,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
 
     // Programs Management
     Route::resource('programs', AdminProgramController::class);
-    Route::post('programs/store', [AdminProgramController::class, 'store'])->name('programs.store');
     Route::post('programs/toggle-status/{program}', [AdminProgramController::class, 'toggleStatus'])->name('programs.toggle-status');
     Route::post('programs/update-order', [AdminProgramController::class, 'updateOrder'])->name('programs.update-order');
 
@@ -173,5 +176,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
     Route::post('events/toggle-status/{event}', [AdminEventController::class, 'toggleStatus'])->name('events.toggle-status');
     Route::post('events/toggle-featured/{event}', [AdminEventController::class, 'toggleFeatured'])->name('events.toggle-featured');
     Route::post('events/update-order', [AdminEventController::class, 'updateOrder'])->name('events.update-order');
+
+    // Essential Files Management
+    Route::resource('essential-files', EssentialFileController::class);
+    Route::post('essential-files/toggle-status/{essential_file}', [EssentialFileController::class, 'toggleStatus'])->name('essential-files.toggle-status');
 
 });
