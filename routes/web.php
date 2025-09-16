@@ -164,6 +164,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
 
     // Programs Management
     Route::resource('programs', AdminProgramController::class);
+    Route::post('programs/store', [AdminProgramController::class, 'store'])->name('programs.store');
     Route::post('programs/toggle-status/{program}', [AdminProgramController::class, 'toggleStatus'])->name('programs.toggle-status');
     Route::post('programs/update-order', [AdminProgramController::class, 'updateOrder'])->name('programs.update-order');
 

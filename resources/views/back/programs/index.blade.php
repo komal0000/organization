@@ -50,7 +50,7 @@
                                     </td>
                                     <td>
                                         @if($program->featured_image)
-                                            <img src="{{ asset('storage/' . $program->featured_image) }}"
+                                            <img src="{{ asset($program->featured_image) }}"
                                                  alt="{{ $program->title }}"
                                                  class="img-thumbnail"
                                                  style="width: 60px; height: 60px; object-fit: cover;">
@@ -88,28 +88,10 @@
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('admin.programs.show', $program) }}"
-                                               class="btn btn-sm btn-admin-outline" title="View">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
                                             <a href="{{ route('admin.programs.edit', $program) }}"
-                                               class="btn btn-sm btn-admin-outline" title="Edit">
+                                               class="btn btn-sm btn-admin-outline me-2" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ route('programs.show', $program->slug) }}"
-                                               class="btn btn-sm btn-info" title="View on Site" target="_blank">
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                            <form action="{{ route('admin.programs.toggle-status', $program) }}"
-                                                  method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="submit"
-                                                        class="btn btn-sm btn-{{ $program->is_active ? 'warning' : 'success' }}"
-                                                        title="{{ $program->is_active ? 'Deactivate' : 'Activate' }}">
-                                                    <i class="fas fa-{{ $program->is_active ? 'pause' : 'play' }}"></i>
-                                                </button>
-                                            </form>
                                             <button type="button" class="btn btn-sm btn-danger"
                                                     onclick="confirmDelete({{ $program->id }})" title="Delete">
                                                 <i class="fas fa-trash"></i>

@@ -91,7 +91,7 @@
                                 <tr data-event-id="{{ $event->id }}">
                                     <td>
                                         @if($event->image)
-                                            <img src="{{ asset('storage/' . $event->image) }}"
+                                            <img src="{{ asset($event->image) }}"
                                                  alt="{{ $event->title }}"
                                                  class="img-thumbnail"
                                                  style="width: 60px; height: 60px; object-fit: cover;">

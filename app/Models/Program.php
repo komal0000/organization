@@ -20,14 +20,12 @@ class Program extends Model
         'is_active',
         'is_featured',
         'meta_title',
-        'meta_description',
-        'gallery_images'
+        'meta_description'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
-        'gallery_images' => 'array',
         'order' => 'integer'
     ];
 

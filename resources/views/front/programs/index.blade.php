@@ -299,7 +299,7 @@
                         <div class="program-card">
                             <div class="program-image">
                                 @if($program->featured_image)
-                                    <img src="{{ asset('storage/' . $program->featured_image) }}"
+                                    <img src="{{ asset($program->featured_image) }}"
                                          alt="{{ $program->title }}" loading="lazy">
                                 @else
                                     <div class="placeholder-image d-flex align-items-center justify-content-center"
@@ -342,7 +342,7 @@
                             <div class="program-card">
                                 <div class="program-image">
                                     @if($program->featured_image)
-                                        <img src="{{ asset('storage/' . $program->featured_image) }}"
+                                        <img src="{{ asset($program->featured_image) }}"
                                              alt="{{ $program->title }}" loading="lazy">
                                     @else
                                         <div class="placeholder-image d-flex align-items-center justify-content-center"
