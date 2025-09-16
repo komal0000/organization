@@ -22,8 +22,12 @@ class SliderController extends Controller
             $slider->subtitle=$request->subtitle??"";
             $slider->link=$request->link??'';
             $slider->btntitle=$request->btntitle??'';
-            $slider->image=$request->image->store('uploads/slider');
-            $slider->mobile_image=$request->mobile_image->store('uploads/slider');
+            if($request->hasFile('image')){
+                $slider->image=$request->image->store('uploads/slider');
+            }
+            if($request->hasFile('mobile_image')){
+                $slider->mobile_image=$request->mobile_image->store('uploads/slider');
+            }
             $slider->save();
             $this->render();
             return redirect()->back()->with('message','Slider Added Sucessfully');

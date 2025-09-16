@@ -54,14 +54,14 @@ class ProgramController extends Controller
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
             $data['featured_image'] = $request->file('featured_image')
-                                               ->store('uploads/programs', 'public');
+                                               ->store('uploads/programs');
         }
 
         // Handle gallery images upload
         $galleryImages = [];
         if ($request->hasFile('gallery_images')) {
             foreach ($request->file('gallery_images') as $image) {
-                $galleryImages[] = $image->store('uploads/programs/gallery', 'public');
+                $galleryImages[] = $image->store('uploads/programs/gallery');
             }
             $data['gallery_images'] = $galleryImages;
         }
@@ -111,29 +111,14 @@ class ProgramController extends Controller
 
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
-            // Delete old image
-            if ($program->featured_image && Storage::disk('public')->exists($program->featured_image)) {
-                Storage::disk('public')->delete($program->featured_image);
-            }
-
-            $data['featured_image'] = $request->file('featured_image')
-                                               ->store('uploads/programs', 'public');
+            $data['featured_image'] = $request->file('featured_image')->store('uploads/programs');
         }
 
         // Handle gallery images upload
         if ($request->hasFile('gallery_images')) {
-            // Delete old gallery images
-            if ($program->gallery_images) {
-                foreach ($program->gallery_images as $oldImage) {
-                    if (Storage::disk('public')->exists($oldImage)) {
-                        Storage::disk('public')->delete($oldImage);
-                    }
-                }
-            }
-
             $galleryImages = [];
             foreach ($request->file('gallery_images') as $image) {
-                $galleryImages[] = $image->store('uploads/programs/gallery', 'public');
+                $galleryImages[] = $image->store('uploads/programs/gallery');
             }
             $data['gallery_images'] = $galleryImages;
         }
@@ -149,19 +134,6 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        // Delete associated images
-        if ($program->featured_image && Storage::disk('public')->exists($program->featured_image)) {
-            Storage::disk('public')->delete($program->featured_image);
-        }
-
-        if ($program->gallery_images) {
-            foreach ($program->gallery_images as $image) {
-                if (Storage::disk('public')->exists($image)) {
-                    Storage::disk('public')->delete($image);
-                }
-            }
-        }
-
         $program->delete();
 
         return redirect()->route('admin.programs.index')
