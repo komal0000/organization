@@ -138,7 +138,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
 
     // Form Field Management
     Route::post('forms/{form}/fields', [FormController::class, 'addField'])->name('admin_form_add_field');
-    Route::post('forms/{form}/fields/{field}', [FormController::class, 'updateField'])->name('admin_form_update_field');
+    Route::get('forms/{form}/fields/{field}/edit', [FormController::class, 'editField'])->name('admin_form_edit_field');
+    Route::put('forms/{form}/fields/{field}', [FormController::class, 'updateField'])->name('admin_form_update_field');
     Route::get('forms/{form}/fields/{field}/delete', [FormController::class, 'deleteField'])->name('admin_form_delete_field');
 
     // Form Responses

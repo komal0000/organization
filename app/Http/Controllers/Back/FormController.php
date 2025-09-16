@@ -108,28 +108,64 @@ class FormController extends Controller
         return back()->with('success', 'Field added successfully!');
     }
 
-    public function updateField(Request $request, FormField $field)
+    public function editField(Form $form, FormField $field)
     {
+        if ($field->form_id !== $form->id) {
+            abort(404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'field' => [
+                'id' => $field->id,
+                'type' => $field->type,
+                'label' => $field->label,
+                'name' => $field->name,
+                'placeholder' => $field->placeholder,
+                'help_text' => $field->help_text,
+                'options' => $field->options ? implode("\n", $field->options) : '',
+                'is_required' => $field->is_required
+            ]
+        ]);
+    }
+
+    public function updateField(Request $request, Form $form, FormField $field)
+    {
+        if ($field->form_id !== $form->id) {
+            abort(404);
+        }
+
         $request->validate([
-            'type' => 'required|in:text,textarea,select,radio,checkbox,email,number,date,file',
+            'type' => 'required|in:text,textarea,email,number,date,select,radio,checkbox,file',
             'label' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'placeholder' => 'nullable|string',
-            'options' => 'nullable|array',
+            'name' => 'required|string|max:255|regex:/^[a-z_]+$/',
+            'placeholder' => 'nullable|string|max:255',
+            'help_text' => 'nullable|string|max:500',
+            'options' => 'nullable|string',
             'is_required' => 'boolean'
         ]);
+
+        // Check if field name already exists for this form (excluding current field)
+        if ($form->fields()->where('name', $request->name)->where('id', '!=', $field->id)->exists()) {
+            return back()->withErrors(['name' => 'Field name already exists for this form.']);
+        }
+
+        $options = null;
+        if (in_array($request->type, ['select', 'radio', 'checkbox']) && $request->options) {
+            $options = array_filter(explode("\n", trim($request->options)));
+        }
 
         $field->update([
             'type' => $request->type,
             'label' => $request->label,
-            'name' => Str::slug($request->label),
-            'description' => $request->description,
+            'name' => $request->name,
             'placeholder' => $request->placeholder,
-            'options' => $request->options,
-            'is_required' => $request->has('is_required')
+            'help_text' => $request->help_text,
+            'options' => $options,
+            'is_required' => $request->boolean('is_required')
         ]);
 
-        return redirect()->back()->with('message', 'Field updated successfully!');
+        return back()->with('success', 'Field updated successfully!');
     }
 
     public function deleteField(Form $form, FormField $field)

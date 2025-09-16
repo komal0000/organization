@@ -4,6 +4,7 @@
 @endsection
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/ui-lightness/jquery-ui.css">
 @endsection
 @section('toolbar')
     <a href="{{ route('registration') }}" class="btn btn-success" target="_blank">
@@ -210,11 +211,86 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Field Modal -->
+    <div class="modal fade" id="editFieldModal" tabindex="-1" aria-labelledby="editFieldModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editFieldModalLabel">
+                        <i class="fas fa-edit me-2"></i>Edit Field
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editFieldForm" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="admin-form-label">Field Type *</label>
+                            <select name="type" class="form-control admin-form-control" id="editFieldType" required>
+                                <option value="text">Text</option>
+                                <option value="textarea">Textarea</option>
+                                <option value="email">Email</option>
+                                <option value="number">Number</option>
+                                <option value="date">Date</option>
+                                <option value="select">Dropdown</option>
+                                <option value="radio">Radio Button</option>
+                                <option value="checkbox">Checkbox</option>
+                                <option value="file">File Upload</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="admin-form-label">Label *</label>
+                            <input type="text" class="form-control admin-form-control" name="label" id="editFieldLabel" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="admin-form-label">Field Name *</label>
+                            <input type="text" class="form-control admin-form-control" name="name" id="editFieldName" required>
+                            <small class="form-text text-muted">Use lowercase letters and underscores only</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="admin-form-label">Placeholder</label>
+                            <input type="text" class="form-control admin-form-control" name="placeholder" id="editFieldPlaceholder">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="admin-form-label">Help Text</label>
+                            <input type="text" class="form-control admin-form-control" name="help_text" id="editFieldHelpText">
+                        </div>
+
+                        <div class="mb-3" id="editOptionsField" style="display: none;">
+                            <label class="admin-form-label">Options (one per line)</label>
+                            <textarea name="options" class="form-control admin-form-control" rows="3" id="editFieldOptions"
+                                placeholder="Option 1&#10;Option 2&#10;Option 3"></textarea>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" name="is_required" value="1" id="editFieldRequired">
+                            <label class="form-check-label">Required Field</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                        <button type="submit" class="btn btn-admin-primary">
+                            <i class="fas fa-save me-2"></i>Update Field
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css"
             integrity="sha512-Fm8kRNVGCBZn0sPmwJbVXlqfJmPC13zRsMElZenX6v721g/H7OukJd8XzDEBRQ2FSATK8xNF9UYvzsCtUpfeJg=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js"
             integrity="sha512-YJgZG+6o3xSc0k5wv774GS+W1gx0vuSI/kr0E0UylL/Qg/noNspPtYwHPN9q6n59CTR/uhgXfjDXLTRI+uIryg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -243,6 +319,136 @@
                     ],
                 });
 
+                // Show/hide options field based on field type
+                $('#fieldType').change(function() {
+                    const selectedType = $(this).val();
+                    if (selectedType === 'select' || selectedType === 'radio' || selectedType === 'checkbox') {
+                        $('#optionsField').show();
+                    } else {
+                        $('#optionsField').hide();
+                    }
+                });
+
+                // Initialize sortable for field ordering
+                if ($("#sortable-fields").length) {
+                    $("#sortable-fields").sortable({
+                        handle: "td:first-child",
+                        update: function(event, ui) {
+                            updateFieldOrder();
+                        }
+                    });
+                }
+
+            });
+
+            // Function to edit field (opens a modal with AJAX data loading)
+            function editField(fieldId) {
+                // Fetch field data via AJAX
+                $.ajax({
+                    url: '{{ route("admin.admin_form_edit_field", [$form->id, "FIELD_ID"]) }}'.replace('FIELD_ID', fieldId),
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.success) {
+                            const field = response.field;
+
+                            // Set form action URL
+                            $('#editFieldForm').attr('action', '{{ route("admin.admin_form_update_field", [$form->id, "FIELD_ID"]) }}'.replace('FIELD_ID', fieldId));
+
+                            // Populate modal fields
+                            $('#editFieldType').val(field.type);
+                            $('#editFieldLabel').val(field.label);
+                            $('#editFieldName').val(field.name);
+                            $('#editFieldPlaceholder').val(field.placeholder || '');
+                            $('#editFieldHelpText').val(field.help_text || '');
+                            $('#editFieldOptions').val(field.options || '');
+                            $('#editFieldRequired').prop('checked', field.is_required);
+
+                            // Show/hide options field based on type
+                            if (field.type === 'select' || field.type === 'radio' || field.type === 'checkbox') {
+                                $('#editOptionsField').show();
+                            } else {
+                                $('#editOptionsField').hide();
+                            }
+
+                            // Show modal
+                            new bootstrap.Modal(document.getElementById('editFieldModal')).show();
+                        }
+                    },
+                    error: function() {
+                        alert('Error loading field data. Please try again.');
+                    }
+                });
+            }
+
+            // Function to update field order via AJAX (simplified without route dependency)
+            function updateFieldOrder() {
+                const fieldIds = [];
+                $('#sortable-fields tr').each(function(index) {
+                    const fieldId = $(this).data('field-id');
+                    if (fieldId) {
+                        fieldIds.push({
+                            id: fieldId,
+                            order: index + 1
+                        });
+                    }
+                });
+
+                // For now, just update the visual order numbers
+                // You can implement the backend route later if needed
+                $('#sortable-fields tr').each(function(index) {
+                    $(this).find('td:first-child').text(index + 1);
+                });
+
+                console.log('Field order updated:', fieldIds);
+            }
+
+            // Handle edit field type change in modal
+            $(document).on('change', '#editFieldType', function() {
+                const selectedType = $(this).val();
+                if (selectedType === 'select' || selectedType === 'radio' || selectedType === 'checkbox') {
+                    $('#editOptionsField').show();
+                } else {
+                    $('#editOptionsField').hide();
+                }
+            });
+
+            // Handle form submission for editing field
+            $('#editFieldForm').on('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const actionUrl = $(this).attr('action');
+
+                $.ajax({
+                    url: actionUrl,
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Close modal
+                        bootstrap.Modal.getInstance(document.getElementById('editFieldModal')).hide();
+
+                        // Show success message
+                        alert('Field updated successfully!');
+
+                        // Reload page to show updated field
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            // Handle validation errors
+                            const errors = xhr.responseJSON.errors;
+                            let errorMessage = 'Validation errors:\n';
+                            for (const field in errors) {
+                                errorMessage += '- ' + errors[field][0] + '\n';
+                            }
+                            alert(errorMessage);
+                        } else {
+                            alert('Error updating field. Please try again.');
+                        }
+                    }
+                });
             });
         </script>
 @endsection
