@@ -127,26 +127,33 @@
             </div>
         </div>
         <div class="line"></div>
-        <div>
-            <a href="/" class="link">Home</a>
-            <a href="{{route('notices')}}" class="link">Notices</a>
-            <a href="{{route('committees')}}" class="link">Committees</a>
-            <a href="{{route('news')}}" class="link">News</a>
-            <a href="{{route('about')}}" class="link">About Us</a>
-            <a href="{{route('issues')}}" class="link">Issues</a>
-            <a href="{{route('gallery')}}" class="link">Gallery</a>
-            <a href="{{route('programs.index')}}" class="link">Programs</a>
-            <a href="{{route('events.index')}}" class="link">Events</a>
-            <a href="{{ route('registration') }}" class="link">Registration</a>
-            <a href="{{ route('membership.index') }}" class="link">Membership</a>
-            <a href="{{route('faq')}}" class="link">Help</a>
-            <a href="{{route('contact')}}" class="link">Contact</a>
-            @if (config('app.has_donation'))
-            <a  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="document.getElementById('sidebar').classList.remove('active');">
-                Donate Now
+
+        <!-- Main Navigation Links -->
+        <a href="/" class="link">Home</a>
+        <a href="{{route('notices')}}" class="link">Notices</a>
+        <a href="{{route('committees')}}" class="link">Committees</a>
+        {{-- <a href="{{route('news')}}" class="link">News</a> --}}
+        <a href="{{route('about')}}" class="link">About Us</a>
+        {{-- <a href="{{route('issues')}}" class="link">Issues</a> --}}
+        <a href="{{route('gallery')}}" class="link">Gallery</a>
+        <a href="{{route('programs.index')}}" class="link">Programs</a>
+        <a href="{{route('events.index')}}" class="link">Events</a>
+        <a href="{{ route('csic') }}" class="link">CSIC</a>
+        <a href="{{route('faq')}}" class="link">Help</a>
+        <a href="{{route('contact')}}" class="link">Contact</a>
+
+        <!-- Become a Member Button -->
+        @if (config('app.has_member'))
+            <a href="{{config('app.member_url')}}" target="_blank" class="link member-link" onclick="document.getElementById('sidebar').classList.remove('active');">
+                <span class="material-symbols-outlined me-2">group</span>
+                Become a Member
             </a>
-            @endif
-        </div>
+        @else
+            <a href="{{ route('membership.index') }}" class="link member-link" onclick="document.getElementById('sidebar').classList.remove('active');">
+                <span class="material-symbols-outlined me-2">group</span>
+                Become a Member
+            </a>
+        @endif
 
     </div>
     <div class="exit"  onclick="document.getElementById('sidebar').classList.remove('active');"></div>
