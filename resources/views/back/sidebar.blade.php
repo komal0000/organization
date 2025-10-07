@@ -86,6 +86,13 @@
         <hr class="nav-divider">
 
         <div class="nav-item">
+            <a class="nav-link" href="{{ route('admin.reports.index') }}">
+                <i class="fas fa-file-alt me-2"></i>Reports & Documents
+            </a>
+        </div>
+        <hr class="nav-divider">
+
+        <div class="nav-item">
             <a class="nav-link" href="{{ route('admin.footer-links.index') }}">
                 <i class="fas fa-link me-2"></i>Footer Links
             </a>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Back\FormController;
 use App\Http\Controllers\Back\GalleryController;
 use App\Http\Controllers\Back\NoticeController;
 use App\Http\Controllers\Back\PartnerController;
+use App\Http\Controllers\Back\ReportController;
 use App\Http\Controllers\Back\SliderController;
 use App\Http\Controllers\Back\TeamController;
 use App\Http\Controllers\FooterLinkController;
@@ -94,6 +95,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'add',[PartnerController::class,'add'])->name('add');
         Route::match(['GET','POST'],'edit/{partner}',[PartnerController::class,'edit'])->name('edit');
         Route::get('del/{partner}',[PartnerController::class,'del'])->name('del');
+    });
+
+    Route::prefix('reports')->name('reports.')->group(function(){
+        Route::get('',[ReportController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'add',[ReportController::class,'add'])->name('add');
+        Route::match(['GET','POST'],'edit/{report}',[ReportController::class,'edit'])->name('edit');
+        Route::get('del/{report}',[ReportController::class,'del'])->name('del');
     });
 
     Route::prefix('notice')->name('notice.')->group(function(){

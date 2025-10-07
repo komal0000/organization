@@ -19,6 +19,8 @@
             @includeIf('front.cache.page.about')
         </div>
     </div>
+
+    @includeIf('front.cache.page.reports')
 @endsection
 @section('js')
 

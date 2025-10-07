@@ -257,3 +257,19 @@ function getPartners(){
 function clearPartnersCache(){
     Cache::forget('partners');
 }
+
+/**
+ * Get reports for display
+ */
+function getReports(){
+    return Cache::rememberForever('reports', function () {
+        return \App\Models\Report::getOrdered();
+    });
+}
+
+/**
+ * Clear reports cache
+ */
+function clearReportsCache(){
+    Cache::forget('reports');
+}
