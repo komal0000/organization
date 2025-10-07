@@ -475,7 +475,7 @@
     @includeIf('front.cache.home.statistics')
     @includeIf('front.cache.home.vision-goals-mission')
     @includeIf('front.cache.home.objectives')
-    @if (config('app.has_donation'))
+    {{-- @if (config('app.has_donation'))
         @php
             $donationSetting = getSetting('donation');
         @endphp
@@ -505,7 +505,7 @@
                 </div>
             </div>
         @endif
-    @endif
+    @endif --}}
 
     <div id="homegallery">
         <div class="gallery-top">
