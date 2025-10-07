@@ -276,6 +276,185 @@
                 max-height: 40px;
             }
         }
+
+        /* Donation Section Styling */
+        #homedonate {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--org-primary, #2c3e50) 0%, var(--org-base, #27ae60) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #homedonate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        #homedonate .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #homedonate .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        #homedonate .desc {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .qr-holder {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .qr-holder img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: white;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .qr-holder img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        #homedonate .extra {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        #homedonate .extra:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        #homedonate .extra h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        #homedonate .extra p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        #homedonate .extra ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #homedonate .extra li {
+          color: white;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        #homedonate .extra li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Add floating elements for visual appeal */
+        #homedonate::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #homedonate {
+                padding: 60px 0;
+            }
+
+            #homedonate .title {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+
+            #homedonate .desc {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
+            .qr-holder {
+                margin: 30px 0;
+            }
+
+            .qr-holder img {
+                max-width: 150px;
+            }
+
+            #homedonate .extra {
+                margin-top: 20px;
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #homedonate .title {
+                font-size: 1.8rem;
+            }
+
+            #homedonate .desc {
+                font-size: 1rem;
+            }
+
+            .qr-holder img {
+                max-width: 120px;
+            }
+
+            #homedonate .extra {
+                padding: 20px;
+            }
+        }
     </style>
 @endsection
 @section('content')
