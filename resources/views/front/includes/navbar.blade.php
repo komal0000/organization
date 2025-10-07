@@ -10,12 +10,11 @@
     <div class="pt-3">
         <div class="navbar-top">
             @if (config('app.has_member'))
-                <a target="_blank" href="{{config('app.member_url')}}" class="top-link">
+                <a href="{{route('membership.index')}}" class="top-link">
                     <div>
                         <span class=" top-icon material-symbols-outlined">group</span>
                     </div>
                     <div class="member">
-
                         Become a
                         <u>
                             member
@@ -74,12 +73,8 @@
             <a href="{{route('faq')}}" class="link">Help</a>
             <a href="{{route('contact')}}" class="link">Contact</a>
             @if (config('app.has_donation'))
-            <a href="#" id="donate" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <a href="#" id="donate" style="color: white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Donate Now
-            </a>
-            @else
-            <a href="{{ route('membership.index') }}" style="color: white;" id="donate">
-              Become a member
             </a>
             @endif
         </div>
@@ -89,11 +84,11 @@
 <div class="mobile-top">
 
         @if (config('app.has_member'))
-            <a  target="_blank" href="{{config('app.member_url')}}" > Become a member </a>
+            <a href="{{ route('membership.index') }}"> Become a member </a>
 
         @endif
         @if (config('app.has_donation'))
-        <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  > Donate Now </a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  style="color: white"> Donate Now </a>
         @endif
 </div>
 <div class="navbar-mobile">
@@ -118,7 +113,7 @@
                 Donate Now
             </div>
             @else
-            <div  >
+            <div>
                 {{config('app.name')}}
             </div>
             @endif

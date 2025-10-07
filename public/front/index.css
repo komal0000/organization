@@ -200,19 +200,6 @@ body {
   font-family: var(--org-font-two);
   display: block;
 }
-.sidebar .inner a.member-link {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 12px 15px;
-  margin-top: 15px;
-  border-radius: 5px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
-}
-.sidebar .inner a.member-link:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
 .sidebar .exit {
   transition: 2s all;
   width: 0%;
