@@ -241,3 +241,19 @@ function getFooterLinks(){
         return \App\Models\FooterLink::getActiveOrdered();
     });
 }
+
+/**
+ * Get partners for display
+ */
+function getPartners(){
+    return Cache::rememberForever('partners', function () {
+        return \App\Models\Partner::getOrdered();
+    });
+}
+
+/**
+ * Clear partners cache
+ */
+function clearPartnersCache(){
+    Cache::forget('partners');
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EssentialFile;
 use App\Models\Form;
 use App\Models\FormResponse;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class PublicFormController extends Controller
 
     public function csic()
     {
-        $essentialFiles = \App\Models\EssentialFile::active()->ordered()->get();
+        $essentialFiles =EssentialFile::active()->ordered()->get();
         return view('front.pages.csic', compact('essentialFiles'));
     }
 }

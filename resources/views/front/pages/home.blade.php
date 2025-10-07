@@ -156,6 +156,126 @@
                 font-size: 2rem;
             }
         }
+
+        .partners-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .partners-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--org-primary, #2c3e50);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--org-primary, #2c3e50) 0%, var(--org-base, #27ae60) 100%);
+            margin: 0 auto 3rem;
+            border-radius: 2px;
+        }
+
+        .partner-item {
+            background: white;
+            border-radius: 15px;
+            padding: 10px 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--org-primary, #2c3e50) 0%, var(--org-base, #27ae60) 100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .partner-item:hover::before {
+            left: 0;
+            opacity: 0.05;
+        }
+
+        .partner-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .partner-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-logo {
+            max-width: 100%;
+            max-height: 60px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: grayscale(100%) opacity(0.7);
+        }
+
+        .partner-item:hover .partner-logo {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .partners-section {
+                padding: 60px 0;
+            }
+
+            .partners-title {
+                font-size: 2rem;
+            }
+
+            .partner-item {
+                padding: 20px 15px;
+                height: 100px;
+            }
+
+            .partner-logo {
+                max-height: 50px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .partners-title {
+                font-size: 1.8rem;
+            }
+
+            .partner-item {
+                height: 80px;
+                padding: 15px 10px;
+            }
+
+            .partner-logo {
+                max-height: 40px;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -217,6 +337,8 @@
         @includeIf('front.cache.home.galleries')
     </div>
 
+    @includeIf('front.cache.home.partners')
+
     <div id="homefaq">
         <div class="container">
             <div class="row">
@@ -238,7 +360,7 @@
 
 @endsection
 @section('js')
-  <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Count up animation
             const countElements = document.querySelectorAll('.statistic-number');
