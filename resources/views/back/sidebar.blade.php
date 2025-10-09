@@ -9,12 +9,12 @@
         </div>
         <hr class="nav-divider">
 
-        {{-- <div class="nav-item">
+        <div class="nav-item">
             <a class="nav-link" href="{{route('admin.notice.index',['type'=>2])}}">
                 <i class="fas fa-newspaper me-2"></i>News
             </a>
         </div>
-        <hr class="nav-divider"> --}}
+        <hr class="nav-divider">
 
         <div class="nav-item">
             <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 4]) }}">

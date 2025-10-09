@@ -23,6 +23,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
             .title {
                 font-size: 40px;
                 color: var(--org-primary);
@@ -43,6 +44,20 @@
 
 }
 
+.viewmore {
+    text-decoration: none;
+    background-color: var(--org-primary);
+    color: var(--org-black);
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    border-radius: 30px;
+    padding: 15px 49px 15px;
+    transition: all 0.5s linear;
+
+
+}
 
 #homenotices {
     font-family: var(--org-font);
@@ -109,21 +124,6 @@
             }
 
         }
-
-    }
-
-    .viewmore {
-        text-decoration: none;
-        background-color: var(--org-primary);
-        color: var(--org-black);
-        font-size: 14px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0;
-        border-radius: 30px;
-        padding: 15px 49px 15px;
-        transition: all 0.5s linear;
-
 
     }
 }
@@ -355,21 +355,25 @@
     }
 }
 
-#home-about{
+#home-about {
     display: flex;
     background-color: var(--org-extra);
-    .image{
+
+    .image {
         padding: 75px;
         width: 45%;
-        img{
+
+        img {
             max-width: 100%;
-            border-radius:50px;
+            border-radius: 50px;
         }
     }
-    .home-text{
-        flex:1;
+
+    .home-text {
+        flex: 1;
         padding: 75px 30px;
-        .title{
+
+        .title {
             font-size: 50px;
             color: var(--org-color);
             font-weight: 700;
@@ -377,7 +381,8 @@
             margin-bottom: 20px;
             font-family: var(--org-font-two);
         }
-        .subtitle{
+
+        .subtitle {
             font-size: 24px;
             color: var(--org-base);
             font-weight: 700;
@@ -386,24 +391,27 @@
 
             font-family: var(--org-font-three);
         }
-        .desc{
+
+        .desc {
             font-size: 20px;
             margin-bottom: 40px;
             line-height: 24px;
             max-height: 72px;
             overflow: hidden;
         }
-        .more{
+
+        .more {
             color: var(--org-black);
             background-color: var(--org-primary);
-            padding:20px 60px;
+            padding: 20px 60px;
             text-decoration: none;
             border-radius: 40px;
             font-weight: 600;
-            transition: 0.5s all ;
-            &:hover{
-                background-color:var(--org-base) ;
-                color:var(--org-white)
+            transition: 0.5s all;
+
+            &:hover {
+                background-color: var(--org-base);
+                color: var(--org-white)
             }
 
         }
@@ -522,6 +530,7 @@
 
     #homedonate {
         padding: 50px 0px 50px 0px;
+
         .title {
             text-align: center;
             font-size: 30px;
@@ -600,7 +609,7 @@
         }
 
         .semi {
-          display: none;
+            display: none;
         }
 
         .more {
@@ -616,9 +625,10 @@
                 border-radius: 10px;
                 overflow: hidden;
 
-                .accordion-body{
+                .accordion-body {
                     font-size: 14px;
                 }
+
                 .accordion-button {
                     padding: 10px;
                     font-family: var(--org-font-two);
@@ -631,25 +641,30 @@
 
     #homenews {
         padding: 100px 0px;
+
         .subtitle {
             font-size: 30px;
             line-height: 35px;
         }
     }
 
-    #home-about{
+    #home-about {
         display: block;
-        .image{
+
+        .image {
             padding: 20px;
             width: 100%;
-            img{
-                border-radius:20px;
+
+            img {
+                border-radius: 20px;
             }
         }
-        .home-text{
+
+        .home-text {
             text-align: center;
             padding: 20px;
-            .title{
+
+            .title {
                 font-size: 30px;
                 color: var(--org-color);
                 font-weight: 700;
@@ -657,7 +672,8 @@
                 margin-bottom: 20px;
                 font-family: var(--org-font-two);
             }
-            .subtitle{
+
+            .subtitle {
                 font-size: 20px;
                 color: var(--org-base);
                 font-weight: 700;
@@ -665,12 +681,14 @@
                 margin-bottom: 10px;
                 font-family: var(--org-font-three);
             }
-            .desc{
+
+            .desc {
                 font-size: 14px;
                 margin-bottom: 20px;
             }
-            .more{
-                padding:10px 40px;
+
+            .more {
+                padding: 10px 40px;
                 // margin:30px 0px;
 
                 display: inline-block;
@@ -678,4 +696,3 @@
         }
     }
 }
-

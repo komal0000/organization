@@ -16,8 +16,12 @@
                        </div>
                     </a>
                 </div>
-
                 @endforeach
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <a href="{{ route('news') }}" class="viewmore">View More</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

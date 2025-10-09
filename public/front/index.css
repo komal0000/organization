@@ -287,6 +287,19 @@ body {
   line-height: 50px;
 }
 
+.viewmore {
+  text-decoration: none;
+  background-color: var(--org-primary);
+  color: var(--org-black);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  border-radius: 30px;
+  padding: 15px 49px 15px;
+  transition: all 0.5s linear;
+}
+
 #homenotices {
   font-family: var(--org-font);
   margin-bottom: 50px;
@@ -337,18 +350,6 @@ body {
 }
 #homenotices .notices .single-notice:not(:last-child) {
   border-bottom: 1px solid var(--org-base);
-}
-#homenotices .viewmore {
-  text-decoration: none;
-  background-color: var(--org-primary);
-  color: var(--org-black);
-  font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0;
-  border-radius: 30px;
-  padding: 15px 49px 15px;
-  transition: all 0.5s linear;
 }
 
 #homemembers {
