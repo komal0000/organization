@@ -9,7 +9,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $event->meta_title ?: $event->title }}">
     <meta property="og:description" content="{{ $event->meta_description ?: Str::limit($event->short_description, 160) }}">
-    <meta property="og:image" content="{{ $event->image ? asset('storage/' . $event->image) : asset('front/images/default-event.jpg') }}">
+    <meta property="og:image" content="{{ asset($event->image) ?: asset('front/images/default-event.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="event">
 
@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $event->meta_title ?: $event->title }}">
     <meta name="twitter:description" content="{{ $event->meta_description ?: Str::limit($event->short_description, 160) }}">
-    <meta name="twitter:image" content="{{ $event->image ? asset('storage/' . $event->image) : asset('front/images/default-event.jpg') }}">
+    <meta name="twitter:image" content="{{ asset($event->image) ?: asset('front/images/default-event.jpg') }}">
 @endsection
 
 @section('css')

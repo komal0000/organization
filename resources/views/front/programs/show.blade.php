@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{ $program->title }}">
     <meta property="og:description" content="{{ $program->short_description }}">
     @if($program->featured_image)
-        <meta property="og:image" content="{{ asset('storage/' . $program->featured_image) }}">
+        <meta property="og:image" content="{{ asset($program->featured_image) }}">
     @endif
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
