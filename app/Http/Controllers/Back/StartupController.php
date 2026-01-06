@@ -34,7 +34,7 @@ class StartupController extends Controller
             $startup->gender_of_entrepreneurs = $request->gender_of_entrepreneurs;
             $startup->sector = $request->sector ?? '';
             $startup->status_of_firm = $request->status_of_firm;
-            
+
             $startup->save();
             return redirect()->route('admin.startups.index')->with('message','Startup Added Successfully');
         }
@@ -60,7 +60,7 @@ class StartupController extends Controller
             $startup->gender_of_entrepreneurs = $request->gender_of_entrepreneurs;
             $startup->sector = $request->sector ?? '';
             $startup->status_of_firm = $request->status_of_firm;
-            
+
             $startup->save();
             return redirect()->route('admin.startups.index')->with('message','Startup Updated Successfully');
         }
