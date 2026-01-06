@@ -65,6 +65,12 @@ class HomeController extends Controller
 
     }
 
+    public function memberSingle($id){
+        $member=DB::table('teams')->where('id',$id)->first();
+        $committee=DB::table('notices')->where('id',$member->notice_id)->first(['title','slug']);
+        return view('front.pages.membersingle',compact('member','committee'));
+    }
+
     public function issues(){
         return view('front.pages.issues');
     }

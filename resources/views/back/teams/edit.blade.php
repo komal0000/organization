@@ -41,7 +41,14 @@
                             <label for="address">Address</label>
                             <input type="text" class="form-control" id="address" name="address" value="{{$team->address}}">
                         </div>
-
+                        <div class="mb-2 col-md-6">
+                            <label for="linkedin">LinkedIn Link</label>
+                            <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{$team->linkedin}}">
+                        </div>
+                        <div class="mb-2 col-md-6">
+                            <label for="facebook">Facebook Link</label>
+                            <input type="text" class="form-control" id="facebook" name="facebook" value="{{$team->facebook}}">
+                        </div>
                         <div class="col-12 text-end">
                             <button class="btn btn-primary">
                                 Save Member

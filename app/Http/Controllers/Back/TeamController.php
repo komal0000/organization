@@ -29,6 +29,8 @@ class TeamController extends Controller
             $team->address=$request->address??"";
             $team->phone=$request->phone??"";
             $team->email=$request->email??"";
+            $team->linkedin=$request->linkedin??"";
+            $team->facebook=$request->facebook??"";
             if($request->hasFile('image')){
                 $team->image=$request->image->store('uploads/members');
             }
@@ -49,6 +51,8 @@ class TeamController extends Controller
             $team->address=$request->address??"";
             $team->phone=$request->phone??"";
             $team->email=$request->email??"";
+            $team->linkedin=$request->linkedin??"";
+            $team->facebook=$request->facebook??"";
             if($request->hasFile('image')){
                 $team->image=$request->image->store('uploads/members');
             }

@@ -48,6 +48,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/gallery/{slug}', [HomeController::class,'gallerySingle'])->name('gallery.single');
     Route::get('/news/{slug}', [HomeController::class,'newsSingle'])->name('news.single');
     Route::get('/committees/{slug}', [HomeController::class,'committeeSingle'])->name('committee.single');
+    Route::get('/member/{id}', [HomeController::class,'memberSingle'])->name('member.single');
     Route::get('/issues/{slug}', [HomeController::class,'issueSingle'])->name('issue.single');
     Route::get('/about/{slug}', [HomeController::class,'aboutSingle'])->name('about.single');
 

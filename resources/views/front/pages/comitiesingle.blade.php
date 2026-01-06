@@ -39,6 +39,9 @@
                             @endif
                             <h5 class="card-title">{{ $member->name }}</h5>
                             <p class="modern-text-muted">{{ $member->desig }}</p>
+                            <a href="{{ route('member.single', ['id' => $member->id]) }}" class="btn btn-modern-primary btn-sm">
+                                View Profile
+                            </a>
                         </div>
 
                     </div>
