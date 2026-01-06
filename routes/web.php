@@ -7,6 +7,7 @@ use App\Http\Controllers\Back\NoticeController;
 use App\Http\Controllers\Back\PartnerController;
 use App\Http\Controllers\Back\ReportController;
 use App\Http\Controllers\Back\SliderController;
+use App\Http\Controllers\Back\StartupController;
 use App\Http\Controllers\Back\TeamController;
 use App\Http\Controllers\FooterLinkController;
 use App\Http\Controllers\Front\HomeController;
@@ -44,6 +45,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/issues', [HomeController::class,'issues'])->name('issues');
     Route::get('/about', [HomeController::class,'about'])->name('about');
     Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+    Route::get('/startup-database', [HomeController::class,'startupDatabase'])->name('startup.database');
 
     Route::get('/gallery/{slug}', [HomeController::class,'gallerySingle'])->name('gallery.single');
     Route::get('/news/{slug}', [HomeController::class,'newsSingle'])->name('news.single');
@@ -96,6 +98,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'add',[PartnerController::class,'add'])->name('add');
         Route::match(['GET','POST'],'edit/{partner}',[PartnerController::class,'edit'])->name('edit');
         Route::get('del/{partner}',[PartnerController::class,'del'])->name('del');
+    });
+
+    Route::prefix('startups')->name('startups.')->group(function(){
+        Route::get('',[StartupController::class,'index'])->name('index');
+        Route::match(['GET','POST'],'add',[StartupController::class,'add'])->name('add');
+        Route::match(['GET','POST'],'edit/{startup}',[StartupController::class,'edit'])->name('edit');
+        Route::get('del/{startup}',[StartupController::class,'del'])->name('del');
     });
 
     Route::prefix('reports')->name('reports.')->group(function(){

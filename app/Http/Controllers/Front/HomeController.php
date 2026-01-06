@@ -93,4 +93,9 @@ class HomeController extends Controller
     public function contact(){
         return view('front.pages.contact');
     }
+
+    public function startupDatabase(){
+        $startups = \App\Models\Startup::orderBy('id', 'asc')->get();
+        return view('front.pages.startupdatabase', compact('startups'));
+    }
 }

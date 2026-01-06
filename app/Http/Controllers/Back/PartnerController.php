@@ -21,11 +21,11 @@ class PartnerController extends Controller
             $partner->name = $request->name ?? "";
             $partner->link = $request->link ?? "";
             $partner->sort_order = $request->sort_order ?? 0;
-            
+
             if($request->hasFile('image')){
                 $partner->image = $request->image->store('uploads/partners');
             }
-            
+
             $partner->save();
             $this->render();
             return redirect()->back()->with('message','Partner Added Successfully');
@@ -39,11 +39,11 @@ class PartnerController extends Controller
             $partner->name = $request->name ?? "";
             $partner->link = $request->link ?? "";
             $partner->sort_order = $request->sort_order ?? 0;
-            
+
             if($request->hasFile('image')){
                 $partner->image = $request->image->store('uploads/partners');
             }
-            
+
             $partner->save();
             $this->render();
             return redirect()->back()->with('message','Partner Updated Successfully');

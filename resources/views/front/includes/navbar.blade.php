@@ -71,6 +71,7 @@
             <a href="{{route('events.index')}}" class="link">Events</a>
             <a href="{{ route('csic') }}" class="link">CSIC</a>
             <a href="{{route('faq')}}" class="link">Help</a>
+            <a href="{{ route('startup.database') }}" class="link">Startup</a>
             <a href="{{route('contact')}}" class="link">Contact</a>
             @if (config('app.has_donation'))
             <a href="#" id="donate" style="color: white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">

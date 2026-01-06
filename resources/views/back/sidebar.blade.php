@@ -97,6 +97,11 @@
                 <i class="fas fa-link me-2"></i>Footer Links
             </a>
         </div>
+        <div class="nav-item">
+            <a href="{{ route('admin.startups.index') }}" class="nav-link">
+                <i class="fas fa-rocket me-2"></i>Startup Database
+            </a>
+        </div>
         <hr class="nav-divider">
 
 
