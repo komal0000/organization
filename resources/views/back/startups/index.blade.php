@@ -15,6 +15,7 @@
             <tr>
                 <th>S.N</th>
                 <th>Name of Firm</th>
+                <th>Project Name</th>
                 <th>Year</th>
                 <th>Size</th>
                 <th>Location</th>
@@ -29,6 +30,7 @@
             <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{$startup->name_of_firm}}</td>
+                <td>{{$startup->project_name ?? '-'}}</td>
                 <td>{{$startup->year_of_operation}}</td>
                 <td>{{$startup->size_of_company}}</td>
                 <td>{{$startup->location_of_firm}}</td>
@@ -50,7 +52,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="9" class="text-center text-muted">No startups found. Add your first startup!</td>
+                <td colspan="10" class="text-center text-muted">No startups found. Add your first startup!</td>
             </tr>
             @endforelse
         </tbody>

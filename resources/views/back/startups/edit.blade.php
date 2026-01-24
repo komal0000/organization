@@ -26,6 +26,18 @@
                             <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="project_name" class="admin-form-label">
+                            <i class="fas fa-project-diagram me-1"></i>Project Name
+                        </label>
+                        <input type="text" class="form-control admin-form-control" id="project_name" name="project_name" placeholder="Enter project name" value="{{old('project_name', $startup->project_name)}}">
+                        @error('project_name')
+                            <div class="admin-alert admin-alert-error mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-3 mb-3">
                         <label for="year_of_operation" class="admin-form-label">
                             <i class="fas fa-calendar me-1"></i>Year of Operation <span class="text-danger">*</span>

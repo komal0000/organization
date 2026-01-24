@@ -19,6 +19,7 @@ class StartupController extends Controller
         }else{
             $request->validate([
                 'name_of_firm' => 'required|string|max:255',
+                'project_name' => 'nullable|string|max:255',
                 'year_of_operation' => 'required|string|max:255',
                 'size_of_company' => 'required|string|max:255',
                 'location_of_firm' => 'required|string|max:255',
@@ -28,6 +29,8 @@ class StartupController extends Controller
 
             $startup = new Startup();
             $startup->name_of_firm = $request->name_of_firm;
+            $startup->project_name = $request->project_name;
+            $startup->project_name = $request->project_name;
             $startup->year_of_operation = $request->year_of_operation;
             $startup->size_of_company = $request->size_of_company;
             $startup->location_of_firm = $request->location_of_firm;
@@ -46,6 +49,7 @@ class StartupController extends Controller
         }else{
             $request->validate([
                 'name_of_firm' => 'required|string|max:255',
+                'project_name' => 'nullable|string|max:255',
                 'year_of_operation' => 'required|string|max:255',
                 'size_of_company' => 'required|string|max:255',
                 'location_of_firm' => 'required|string|max:255',
@@ -54,6 +58,7 @@ class StartupController extends Controller
             ]);
 
             $startup->name_of_firm = $request->name_of_firm;
+            $startup->project_name = $request->project_name;
             $startup->year_of_operation = $request->year_of_operation;
             $startup->size_of_company = $request->size_of_company;
             $startup->location_of_firm = $request->location_of_firm;

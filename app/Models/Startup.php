@@ -11,6 +11,7 @@ class Startup extends Model
 
     protected $fillable = [
         'name_of_firm',
+        'project_name',
         'year_of_operation',
         'size_of_company',
         'location_of_firm',
