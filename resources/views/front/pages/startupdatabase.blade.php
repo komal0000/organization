@@ -27,7 +27,6 @@
                                 <th style="padding: 15px; font-weight: 500;">Year of Operation</th>
                                 <th style="padding: 15px; font-weight: 500;">Size of the Company</th>
                                 <th style="padding: 15px; font-weight: 500;">Location of Firm</th>
-                                <th style="padding: 15px; font-weight: 500;">Gender of Entrepreneurs</th>
                                 <th style="padding: 15px; font-weight: 500;">Please Specify the Sector</th>
                                 <th style="padding: 15px; font-weight: 500;">Status of Firm</th>
                             </tr>
@@ -41,13 +40,12 @@
                                     <td style="padding: 12px;">{{ $startup->year_of_operation }}</td>
                                     <td style="padding: 12px;">{{ $startup->size_of_company }}</td>
                                     <td style="padding: 12px;">{{ $startup->location_of_firm }}</td>
-                                    <td style="padding: 12px;">{{ $startup->gender_of_entrepreneurs }}</td>
                                     <td style="padding: 12px;">{{ $startup->sector ?? '-' }}</td>
                                     <td style="padding: 12px;">{{ $startup->status_of_firm }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center" style="padding: 30px;">
+                                    <td colspan="8" class="text-center" style="padding: 30px;">
                                         <p class="modern-text-muted">No startups found in the database.</p>
                                     </td>
                                 </tr>
