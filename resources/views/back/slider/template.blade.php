@@ -4,8 +4,8 @@
             @foreach ($sliders as $key => $slider)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-bs-interval="10000">
                     <div class="slider-item">
-                        <img src="{{ vasset($slider->mobile_image) }}" class="d-block d-md-none" alt="">
-                        <img src="{{ vasset($slider->image) }}" class="d-md-block d-none" alt="">
+                        <img src="/{{ $slider->mobile_image ?: $slider->image }}?v={{ config('app.version') }}" class="d-block d-md-none" alt="">
+                        <img src="/{{ $slider->image }}?v={{ config('app.version') }}" class="d-md-block d-none" alt="">
                         @if ($slider->title != '' || $slider->subtitle != '')
                             <div class="slider-info">
                                 <div class="title">{!! $slider->title !!}</div>
