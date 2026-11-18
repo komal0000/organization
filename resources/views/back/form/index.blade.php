@@ -10,11 +10,11 @@
 @section('content')
 <div class="admin-card">
     <div class="admin-card-header">
-        <i class="fas fa-wpforms me-2"></i>All Forms
+        <i class="fab fa-wpforms me-2"></i>All Forms
     </div>
     <div class="admin-card-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table admin-table mb-0">
                 <thead>
                     <tr>
                         <th>SL</th>

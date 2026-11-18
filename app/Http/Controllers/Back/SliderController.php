@@ -10,7 +10,19 @@ class SliderController extends Controller
 {
     public function index(){
         $sliders=Slider::all();
-        return view('back.slider.index',compact('sliders'));
+        $enabled=self::enabled();
+        return view('back.slider.index',compact('sliders','enabled'));
+    }
+
+    // never-saved setting is '' and counts as on, so existing sites keep their slider
+    public static function enabled(){
+        return getSetting('sliderEnabled',true)!=='0';
+    }
+
+    public function toggle(){
+        setSetting('sliderEnabled',self::enabled()?'0':'1',true);
+        $this->render();
+        return redirect()->back()->with('message',self::enabled()?'Slider turned on':'Slider turned off');
     }
 
     public function add(Request $request){
@@ -63,7 +75,7 @@ class SliderController extends Controller
     }
 
     function render(){
-        $sliders=Slider::all();
+        $sliders=self::enabled()?Slider::all():collect();
         file_put_contents(resource_path('views/front/cache/home/slider.blade.php'),view('back.slider.template',compact('sliders'))->render());
     }
 

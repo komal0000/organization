@@ -45,7 +45,8 @@ class MembershipController extends Controller
         }
 
         try {
-            $membership = Membership::create($request->all());
+            // only validated fields: status and admin_notes must never come from the public form
+            $membership = Membership::create($validator->validated());
 
             return response()->json([
                 'success' => true,

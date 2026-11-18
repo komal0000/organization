@@ -106,7 +106,7 @@
 
             @if($files->hasPages())
                 <div class="mt-4">
-                    {{ $files->links() }}
+                    {{ $files->links('pagination::bootstrap-5') }}
                 </div>
             @endif
         </div>

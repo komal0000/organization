@@ -19,32 +19,32 @@
 
     <!-- Statistics Cards -->
     <div class="row mb-4">
-        <div class="col-lg-3 col-md-6 mb-3">
+        <div class="col-6 col-lg-3 mb-3">
             <div class="admin-stat-card">
                 <i class="fas fa-bell text-admin-primary fa-2x mb-3"></i>
                 <div class="stat-number">{{ \App\Models\Notice::where('type', 1)->count() }}</div>
                 <div class="stat-label">Total Notices</div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-3">
+        <div class="col-6 col-lg-3 mb-3">
             <div class="admin-stat-card" style="border-left-color: var(--admin-secondary);">
                 <i class="fas fa-newspaper text-admin-secondary fa-2x mb-3"></i>
                 <div class="stat-number" style="color: var(--admin-secondary);">{{ \App\Models\Notice::where('type', 2)->count() }}</div>
                 <div class="stat-label">News Articles</div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-3">
+        <div class="col-6 col-lg-3 mb-3">
             <div class="admin-stat-card" style="border-left-color: var(--admin-accent);">
                 <i class="fas fa-images text-admin-accent fa-2x mb-3"></i>
                 <div class="stat-number" style="color: var(--admin-accent);">{{ \App\Models\Gallery::count() }}</div>
-                <div class="stat-label">Gallery Items</div>
+                <div class="stat-label">Gallery Images</div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-3">
+        <div class="col-6 col-lg-3 mb-3">
             <div class="admin-stat-card" style="border-left-color: #28a745;">
-                <i class="fas fa-sliders-h" style="color: #28a745;" class="fa-2x mb-3"></i>
+                <i class="fas fa-sliders-h fa-2x mb-3" style="color: #28a745;"></i>
                 <div class="stat-number" style="color: #28a745;">{{ \App\Models\Slider::count() }}</div>
-                <div class="stat-label">Active Sliders</div>
+                <div class="stat-label">Sliders</div>
             </div>
         </div>
     </div>
@@ -73,6 +73,11 @@
                                 <i class="fas fa-sliders-h me-2"></i>Add Slider
                             </a>
                         </div>
+                        <div class="col-6 mb-3">
+                            <a href="{{ route('admin.events.create') }}" class="btn btn-admin-outline w-100">
+                                <i class="fas fa-calendar-plus me-2"></i>Add Event
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,21 +86,23 @@
         <div class="col-lg-6 mb-4">
             <div class="admin-card">
                 <div class="admin-card-header">
-                    <i class="fas fa-chart-bar me-2"></i>Recent Activity
+                    <i class="fas fa-inbox me-2"></i>Waiting for Review
                 </div>
                 <div class="admin-card-body">
-                    <div class="admin-alert admin-alert-info">
-                        <i class="fas fa-info-circle me-2"></i>
-                        System is running smoothly
-                    </div>
-                    <div class="admin-alert admin-alert-success">
-                        <i class="fas fa-check-circle me-2"></i>
-                        All components are up to date
-                    </div>
-                    <div class="admin-alert admin-alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        Remember to backup your data regularly
-                    </div>
+                    @php
+                        $pendingMembers = \App\Models\Membership::where('status', 'pending')->count();
+                        $pendingRegistrations = \App\Models\FormResponse::where('status', 'pending')->count();
+                    @endphp
+                    <a href="{{ route('admin.membership-applications.index', ['status' => 'pending']) }}" class="admin-todo">
+                        <i class="fas fa-user-check"></i>
+                        <span>Membership applications</span>
+                        <span class="badge {{ $pendingMembers ? 'bg-warning text-dark' : 'bg-secondary' }}">{{ $pendingMembers }} pending</span>
+                    </a>
+                    <a href="{{ route('admin.registration-applications.index', ['status' => 'pending']) }}" class="admin-todo">
+                        <i class="fas fa-file-signature"></i>
+                        <span>CSIC registration applications</span>
+                        <span class="badge {{ $pendingRegistrations ? 'bg-warning text-dark' : 'bg-secondary' }}">{{ $pendingRegistrations }} pending</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -114,8 +121,7 @@
                             <th>Type</th>
                             <th>Title</th>
                             <th>Created</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th class="text-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,11 +141,8 @@
                             </td>
                             <td>{{ Str::limit($notice->title, 40) }}</td>
                             <td>{{ $notice->created_at->format('M d, Y') }}</td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.notice.edit', ['notice' => $notice->id, 'type' => $notice->type]) }}"
+                            <td class="text-end">
+                                <a href="{{ route('admin.notice.edit', ['notice' => $notice->id]) }}"
                                    class="btn btn-sm btn-admin-outline">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -147,7 +150,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted">No content found</td>
+                            <td colspan="4" class="admin-empty"><i class="fas fa-inbox"></i>No content yet</td>
                         </tr>
                         @endforelse
                     </tbody>

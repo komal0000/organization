@@ -8,51 +8,59 @@
     </a>
 @endsection
 @section('content')
-<div class="mt-3 p-3 shadow">
-
-    <table class="table table-bordered">
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Document</th>
-            <th>File Size</th>
-            <th>Sort Order</th>
-            <th></th>
-        </tr>
-        @foreach ($reports as $report)
-        <tr>
-            <td>
-                <strong>{{$report->title}}</strong>
-            </td>
-            <td>
-                @if($report->description)
-                    <span class="text-muted">{{Str::limit($report->description, 50)}}</span>
-                @else
-                    <span class="text-muted">No description</span>
-                @endif
-            </td>
-            <td>
-                <a href="{{asset($report->document)}}" target="_blank" class="btn btn-sm btn-outline-primary">
-                    <i class="fas fa-file-{{strtolower($report->file_extension)}} me-1"></i>
-                    View {{strtoupper($report->file_extension)}}
-                </a>
-            </td>
-            <td>
-                <span class="badge bg-secondary">{{$report->file_size}}</span>
-            </td>
-            <td>
-                {{$report->sort_order}}
-            </td>
-            <td>
-                <a href="{{route('admin.reports.edit',['report'=>$report->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="{{route('admin.reports.del',['report'=>$report->id])}}" onclick="return confirm('Delete report? This will also delete the file.');" class="btn btn-sm btn-danger" title="Delete">
-                    <i class="far fa-trash-alt"></i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <i class="fas fa-file-alt me-2"></i>Reports & Documents
+    </div>
+    <div class="admin-card-body">
+        <div class="table-responsive">
+            <table class="table admin-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Document</th>
+                        <th>Size</th>
+                        <th>Order</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($reports as $report)
+                    <tr>
+                        <td>
+                            <strong>{{$report->title}}</strong>
+                            @if($report->description)
+                                <br><small class="text-muted">{{Str::limit($report->description, 80)}}</small>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{asset($report->document)}}" target="_blank" class="btn btn-sm btn-admin-outline text-nowrap">
+                                <i class="fas fa-file-{{strtolower($report->file_extension)}} me-1"></i>
+                                View {{strtoupper($report->file_extension)}}
+                            </a>
+                        </td>
+                        <td><span class="badge bg-secondary">{{$report->file_size}}</span></td>
+                        <td>{{$report->sort_order}}</td>
+                        <td class="text-end text-nowrap">
+                            <a href="{{route('admin.reports.edit',['report'=>$report->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{route('admin.reports.del',['report'=>$report->id])}}" onclick="return confirm('Delete report? This will also delete the file.');" class="btn btn-sm btn-danger" title="Delete">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5" class="admin-empty">
+                            <i class="fas fa-file-alt"></i>
+                            No reports yet. <a href="{{route('admin.reports.add')}}">Add the first one</a>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection

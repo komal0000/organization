@@ -5,8 +5,24 @@
 @endsection
 
 @section('toolbar')
-    <div class="d-flex gap-2">
-        <form method="GET" action="{{ route('admin.registration-applications.index') }}" class="d-flex gap-2">
+    <a href="{{ route('admin.registration-applications.export') }}?{{ http_build_query(request()->all()) }}"
+       class="btn btn-success">
+        <i class="fas fa-download me-2"></i>Export CSV
+    </a>
+@endsection
+
+@section('content')
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <i class="fas fa-list me-2"></i>Registration Applications
+            <div class="ms-auto">
+                <span class="badge bg-warning">{{ $statusCounts['pending'] ?? 0 }} Pending</span>
+                <span class="badge bg-success">{{ $statusCounts['approved'] ?? 0 }} Approved</span>
+                <span class="badge bg-danger">{{ $statusCounts['rejected'] ?? 0 }} Rejected</span>
+            </div>
+        </div>
+        <div class="admin-card-body">
+            <form method="GET" action="{{ route('admin.registration-applications.index') }}" class="admin-filter-bar">
             <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
                 <option value="">All Status</option>
                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
@@ -27,27 +43,10 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <a href="{{ route('admin.registration-applications.export') }}?{{ http_build_query(request()->all()) }}"
-           class="btn btn-sm btn-success">
-            <i class="fas fa-download me-1"></i>Export CSV
-        </a>
-    </div>
-@endsection
 
-@section('content')
-    <div class="admin-card">
-        <div class="admin-card-header">
-            <i class="fas fa-list me-2"></i>Registration Applications
-            <div class="ms-auto">
-                <span class="badge bg-warning">{{ $applications->where('status', 'pending')->count() }} Pending</span>
-                <span class="badge bg-success">{{ $applications->where('status', 'approved')->count() }} Approved</span>
-                <span class="badge bg-danger">{{ $applications->where('status', 'rejected')->count() }} Rejected</span>
-            </div>
-        </div>
-        <div class="admin-card-body">
             @if($applications->count() > 0)
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table admin-table mb-0">
                         <thead>
                             <tr>
                                 <th width="80">ID</th>
@@ -126,7 +125,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $applications->appends(request()->query())->links() }}
+                    {{ $applications->appends(request()->query())->links('pagination::bootstrap-5') }}
                 </div>
             @else
                 <div class="text-center py-5">

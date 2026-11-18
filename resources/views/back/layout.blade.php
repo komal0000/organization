@@ -18,9 +18,13 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v={{ filemtime(public_path('css/admin.css')) }}">
 
-    <title>{{ config('app.name') }} @yield('title')</title>
+    @php
+        // breadcrumb links become the tab title, e.g. "Committees / Board"
+        $pageTitle = trim(preg_replace('/\s*\n\s*/', ' / ', trim(html_entity_decode(strip_tags($__env->yieldContent('head-title'))))));
+    @endphp
+    <title>{{ $pageTitle ?: 'Dashboard' }} · Admin · {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -32,6 +36,10 @@
             <div class="col-lg-10 col-md-9 admin-main">
                 <div class="admin-header">
                     <div class="admin-breadcrumb">
+                        <button class="btn btn-admin-outline admin-menu-toggle" type="button" aria-label="Open menu"
+                            onclick="document.getElementById('adminSidebar').classList.toggle('show')">
+                            <i class="fas fa-bars"></i>
+                        </button>
                         <a href="{{ route('admin.index') }}">
                             <i class="fas fa-home me-1"></i>Dashboard
                         </a>
@@ -39,11 +47,13 @@
                     </div>
                     <div class="admin-toolbar">
                         @yield('toolbar')
+                    </div>
+                    <div class="admin-account">
                         <div class="dropdown">
-                            <button class="btn btn-admin-outline dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown">
-                                <i class="fas fa-user me-1"></i>Admin
+                            <button class="btn btn-admin-outline dropdown-toggle" type="button" id="adminDropdown" data-bs-toggle="dropdown" aria-label="Account menu">
+                                <i class="fas fa-user"></i><span class="d-none d-sm-inline ms-1">Admin</span>
                             </button>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('admin.setting.password') }}">
                                     <i class="fas fa-key me-2"></i>Change Password
                                 </a></li>
@@ -103,6 +113,14 @@
         $(document).ready(function() {
             $('.dropify').dropify();
             showToastr();
+        });
+
+        // phone menu: a tap outside the open sidebar closes it
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('adminSidebar');
+            if (sidebar.classList.contains('show') && !sidebar.contains(e.target) && !e.target.closest('.admin-menu-toggle')) {
+                sidebar.classList.remove('show');
+            }
         });
 
     </script>

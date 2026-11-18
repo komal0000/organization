@@ -74,7 +74,7 @@
 
             @if($events->count() > 0)
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="events-table">
+                    <table class="table admin-table mb-0" id="events-table">
                         <thead>
                             <tr>
                                 <th width="80">Image</th>
@@ -170,7 +170,7 @@
 
                 <!-- Pagination -->
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $events->appends(request()->query())->links() }}
+                    {{ $events->appends(request()->query())->links('pagination::bootstrap-5') }}
                 </div>
             @else
                 <div class="text-center py-5">
@@ -188,7 +188,7 @@
                             Clear Filters
                         </a>
                     @endif
-                    <a href="{{ route('admin.events.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.events.create') }}" class="btn btn-admin-primary">
                         <i class="fas fa-plus me-2"></i>Create Event
                     </a>
                 </div>

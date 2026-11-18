@@ -1,17 +1,16 @@
 @extends('back.layout')
 @section('head-title')
     <a href="#">Footer Links</a>
-    <a href="#">Manage</a>
+@endsection
+@section('toolbar')
+    <a href="{{ route('admin.footer-links.create') }}" class="btn btn-admin-primary">
+        <i class="fas fa-plus me-2"></i>Add New Link
+    </a>
 @endsection
 @section('content')
 <div class="admin-card">
-    <div class="admin-card-header d-flex justify-content-between align-items-center">
-        <div>
-            <i class="fas fa-link me-2"></i>Footer Links Management
-        </div>
-        <a href="{{ route('admin.footer-links.create') }}" class="btn btn-admin-primary">
-            <i class="fas fa-plus me-2"></i>Add New Link
-        </a>
+    <div class="admin-card-header">
+        <i class="fas fa-link me-2"></i>Footer Links
     </div>
     <div class="admin-card-body">
         @if(session('success'))
@@ -22,8 +21,8 @@
 
         @if($links->count() > 0)
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="table-light">
+                <table class="table admin-table mb-0">
+                    <thead>
                         <tr>
                             <th>Order</th>
                             <th>Title</th>

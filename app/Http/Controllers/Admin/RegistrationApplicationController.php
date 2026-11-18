@@ -39,8 +39,9 @@ class RegistrationApplicationController extends Controller
 
         $applications = $query->paginate(20);
         $forms = Form::where('is_active', true)->get();
+        $statusCounts = FormResponse::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status');
 
-        return view('back.registration.applications.index', compact('applications', 'forms'));
+        return view('back.registration.applications.index', compact('applications', 'forms', 'statusCounts'));
     }
 
     /**

@@ -2,8 +2,7 @@
 
 @section('head-title')
     <a href="{{ route('admin.membership-applications.index') }}">Membership Applications</a>
-    <span class="admin-breadcrumb-separator">></span>
-    <span>Application #{{ $membership->id }}</span>
+    <a href="#">Application #{{ $membership->id }}</a>
 @endsection
 
 @section('toolbar')

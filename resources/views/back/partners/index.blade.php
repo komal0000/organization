@@ -8,44 +8,57 @@
     </a>
 @endsection
 @section('content')
-<div class="mt-3 p-3 shadow">
-
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Link</th>
-            <th>Sort Order</th>
-            <th></th>
-        </tr>
-        @foreach ($partners as $partner)
-        <tr>
-            <td>
-                {{$partner->name}}
-            </td>
-            <td>
-                <img loading="lazy" src="{{vasset($partner->image)}}" style="height:60px" alt="partner image">
-            </td>
-            <td>
-                @if($partner->link)
-                    <a href="{{$partner->link}}" target="_blank" class="text-primary">{{$partner->link}}</a>
-                @else
-                    <span class="text-muted">No Link</span>
-                @endif
-            </td>
-            <td>
-                {{$partner->sort_order}}
-            </td>
-            <td>
-                <a href="{{route('admin.partners.edit',['partner'=>$partner->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="{{route('admin.partners.del',['partner'=>$partner->id])}}" onclick="return confirm('Delete partner?');" class="btn btn-sm btn-danger" title="Delete">
-                    <i class="far fa-trash-alt"></i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <i class="fas fa-handshake me-2"></i>Partners
+    </div>
+    <div class="admin-card-body">
+        <div class="table-responsive">
+            <table class="table admin-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Name</th>
+                        <th>Link</th>
+                        <th>Order</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($partners as $partner)
+                    <tr>
+                        <td>
+                            <img loading="lazy" src="{{vasset($partner->image)}}" class="admin-thumb" alt="partner logo">
+                        </td>
+                        <td><strong>{{$partner->name}}</strong></td>
+                        <td>
+                            @if($partner->link)
+                                <a href="{{$partner->link}}" target="_blank" rel="noopener">{{Str::limit($partner->link, 40)}}</a>
+                            @else
+                                <span class="text-muted">—</span>
+                            @endif
+                        </td>
+                        <td>{{$partner->sort_order}}</td>
+                        <td class="text-end text-nowrap">
+                            <a href="{{route('admin.partners.edit',['partner'=>$partner->id])}}" class="btn btn-sm btn-admin-outline" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{route('admin.partners.del',['partner'=>$partner->id])}}" onclick="return confirm('Delete partner?');" class="btn btn-sm btn-danger" title="Delete">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5" class="admin-empty">
+                            <i class="fas fa-handshake"></i>
+                            No partners yet. <a href="{{route('admin.partners.add')}}">Add the first one</a>
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 @endsection

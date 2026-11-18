@@ -26,8 +26,9 @@ class MembershipApplicationController extends Controller
         }
 
         $memberships = $query->paginate(20);
+        $statusCounts = Membership::selectRaw('status, count(*) as total')->groupBy('status')->pluck('total', 'status');
 
-        return view('back.membership.applications.index', compact('memberships'));
+        return view('back.membership.applications.index', compact('memberships', 'statusCounts'));
     }
 
     public function show(Membership $membership)

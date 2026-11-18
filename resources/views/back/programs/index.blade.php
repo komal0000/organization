@@ -27,7 +27,7 @@
         <div class="admin-card-body">
             @if($programs->count() > 0)
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="programsTable">
+                    <table class="table admin-table mb-0" id="programsTable">
                         <thead>
                             <tr>
                                 <th width="50" class="order-handle" style="display:none;">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $programs->links() }}
+                    {{ $programs->links('pagination::bootstrap-5') }}
                 </div>
             @else
                 <div class="text-center py-5">

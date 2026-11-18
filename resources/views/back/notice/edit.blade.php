@@ -4,39 +4,46 @@
     <a href="#">Edit</a>
 @endsection
 @section('toolbar')
+    <a href="{{ route('admin.notice.index', ['type' => $notice->type]) }}" class="btn btn-admin-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to List
+    </a>
 @endsection
 @section('content')
-    <div class="mt-3 p-3 shadow">
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <i class="fas fa-edit me-2"></i>Edit {{ noticeType($notice->type) }}
+        </div>
+        <div class="admin-card-body">
         <form action="{{ route('admin.notice.edit', ['notice' => $notice->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mb-2">
-                <label for="title">
+            <div class="mb-3">
+                <label for="title" class="admin-form-label">
                     @if($notice->type==6)
                     Question
                     @else
                     Title
                     @endif
                 </label>
-                <input type="text" name="title" class="form-control" data="Enter Title" value="{{$notice->title}}">
+                <input type="text" name="title" id="title" class="form-control admin-form-control" value="{{$notice->title}}">
             </div>
             @if ($notice->type!=4  &&  $notice->type!=6 && $notice->type!=7)
 
-            <div class="mb-2">
-                <label for="file">
+            <div class="mb-3">
+                <label for="file" class="admin-form-label">
                     @if ($notice->type == 1)
                         Download File
                     @else
                         Image
                     @endif
                 </label>
-                <input type="file" name="file" class="form-control dropify" data="Select File" data-default-file="{{asset($notice->file)}}"
+                <input type="file" name="file" id="file" class="form-control dropify" data-default-file="{{ $notice->file ? asset($notice->file) : '' }}"
                     @if ($notice->type != 1) accept="image/*" @endif>
 
             </div>
             @endif
             @if ($notice->type != 1 && $notice->type != 2 )
-                <div class="mb-2">
-                    <label for="short_desc">
+                <div class="mb-3">
+                    <label for="short_desc" class="admin-form-label">
                         @if($notice->type==6)
                         Answer
                         @elseif($notice->type==8)
@@ -45,30 +52,34 @@
                         Short Description
                         @endif
                     </label>
-                    <textarea type="text" name="short_desc" class="form-control" data="Enter short description" required>{{$notice->short_desc}}</textarea>
+                    <textarea type="text" name="short_desc" id="short_desc" class="form-control admin-form-control" rows="4" required>{{$notice->short_desc}}</textarea>
                 </div>
             @endif
 
             @if ($notice->type == 2 || $notice->type==7 || $notice->type==8)
-                <div class="mb-2">
-                    <label for="desc">
+                <div class="mb-3">
+                    <label for="desc" class="admin-form-label">
                         @if ($notice->type == 2)
                             Full News
                         @elseif($notice->type==8)
                             Full About
                         @endif
                     </label>
-                    <textarea type="text" name="desc" id="desc" class="form-control" required>{{$notice->desc}}</textarea>
+                    <textarea type="text" name="desc" id="desc" class="form-control admin-form-control" required>{{$notice->desc}}</textarea>
                 </div>
             @endif
 
-            <div>
-                <button class="btn btn-primary">
-                    Update {{ noticeType($notice->type) }}
+            <div class="d-flex gap-2">
+                <button class="btn btn-admin-primary">
+                    <i class="fas fa-save me-2"></i>Update {{ noticeType($notice->type) }}
                 </button>
+                <a href="{{ route('admin.notice.index', ['type' => $notice->type]) }}" class="btn btn-admin-secondary">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </a>
             </div>
 
         </form>
+        </div>
     </div>
 @endsection
 @section('js')

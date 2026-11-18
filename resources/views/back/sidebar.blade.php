@@ -1,382 +1,77 @@
-<div class="admin-sidebar">
+@php
+    $firstForm = App\Models\Form::first();
+    // notice pages are split by type (notice, news, about...); edit pages carry a bound Notice instead of a type
+    $routeNotice = request()->route('notice');
+    $noticeType = request()->route('type') ?? ($routeNotice instanceof App\Models\Notice ? $routeNotice->type : null);
+    $on = fn($pattern, $type = null) => request()->routeIs($pattern) && ($type === null || $noticeType == $type);
+
+    $groups = [
+        'Website Content' => [
+            ['Notices', 'fa-bell', route('admin.notice.index', ['type' => 1]), $on('admin.notice.*', 1)],
+            ['News', 'fa-newspaper', route('admin.notice.index', ['type' => 2]), $on('admin.notice.*', 2)],
+            ['About Us', 'fa-info-circle', route('admin.notice.index', ['type' => 8]), $on('admin.notice.*', 8)],
+            ['Committees', 'fa-users', route('admin.notice.index', ['type' => 4]), $on('admin.notice.*', 4) || $on('admin.team.*')],
+            ['Galleries', 'fa-images', route('admin.notice.index', ['type' => 5]), $on('admin.notice.*', 5) || $on('admin.gallery.*')],
+            ['FAQ', 'fa-question-circle', route('admin.notice.index', ['type' => 6]), $on('admin.notice.*', 6)],
+            ['Sliders', 'fa-sliders-h', route('admin.slider.index'), $on('admin.slider.*')],
+            ['Partners', 'fa-handshake', route('admin.partners.index'), $on('admin.partners.*')],
+            ['Reports & Documents', 'fa-file-alt', route('admin.reports.index'), $on('admin.reports.*')],
+        ],
+        'Programs & Events' => [
+            ['Programs', 'fa-clipboard-list', route('admin.programs.index'), $on('admin.programs.*')],
+            ['Events', 'fa-calendar-alt', route('admin.events.index'), $on('admin.events.*')],
+        ],
+        'Membership' => [
+            ['Applications', 'fa-user-check', route('admin.membership-applications.index'), $on('admin.membership-applications.*')],
+            ['Page Content', 'fa-edit', route('admin.membership-content.index'), $on('admin.membership-content.*')],
+        ],
+        'CSIC' => array_filter([
+            ['Registration Applications', 'fa-file-signature', route('admin.registration-applications.index'), $on('admin.registration-applications.*')],
+            $firstForm ? ['Registration Form', 'fa-list-check', route('admin.admin_form_edit', $firstForm->id), $on('admin.admin_form_*')] : null,
+            ['Essential Files', 'fa-file-download', route('admin.essential-files.index'), $on('admin.essential-files.*')],
+            ['Startup Database', 'fa-rocket', route('admin.startups.index'), $on('admin.startups.*')],
+        ]),
+        'Home Page' => [
+            ['Statistics', 'fa-chart-line', route('admin.setting.home-statistics'), $on('admin.setting.home-statistics')],
+            ['Objectives', 'fa-bullseye', route('admin.setting.home-objectives'), $on('admin.setting.home-objectives')],
+            ['Vision, Goals & Mission', 'fa-eye', route('admin.setting.home-vision-goals-mission'), $on('admin.setting.home-vision-goals-mission')],
+            ['Home FAQ', 'fa-question-circle', route('admin.setting.homeFAQ'), $on('admin.setting.homeFAQ')],
+        ],
+        'Settings' => [
+            ['General', 'fa-cogs', route('admin.setting.general'), $on('admin.setting.general')],
+            ['Contact', 'fa-phone', route('admin.setting.contact'), $on('admin.setting.contact')],
+            ['Donation', 'fa-donate', route('admin.setting.donation'), $on('admin.setting.donation')],
+            ['Facebook Page', 'fa-thumbs-up', route('admin.setting.fb'), $on('admin.setting.fb')],
+            ['Sharing (Meta)', 'fa-share-alt', route('admin.setting.meta'), $on('admin.setting.meta')],
+            ['Footer Links', 'fa-link', route('admin.footer-links.index'), $on('admin.footer-links.*')],
+        ],
+    ];
+@endphp
+
+<aside class="admin-sidebar" id="adminSidebar">
     <h5><i class="fas fa-shield-alt me-2"></i>Admin Panel</h5>
 
     <nav class="sidebar-nav">
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 1]) }}">
-                <i class="fas fa-bell me-2"></i>Notices
-            </a>
-        </div>
-        <hr class="nav-divider">
+        <a class="nav-link {{ $on('admin.index') ? 'active' : '' }}" href="{{ route('admin.index') }}">
+            <i class="fas fa-tachometer-alt"></i>Dashboard
+        </a>
 
-        <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>2])}}">
-                <i class="fas fa-newspaper me-2"></i>News
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 4]) }}">
-                <i class="fas fa-users me-2"></i>Committees
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 5]) }}">
-                <i class="fas fa-images me-2"></i>Galleries
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 6]) }}">
-                <i class="fas fa-question-circle me-2"></i>FAQ
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        {{-- <div class="nav-item">
-            <a class="nav-link" href="{{route('admin.notice.index',['type'=>7])}}">
-                <i class="fas fa-exclamation-triangle me-2"></i>Issues
-            </a>
-        </div>
-        <hr class="nav-divider"> --}}
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.notice.index', ['type' => 8]) }}">
-                <i class="fas fa-info-circle me-2"></i>About Us
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.slider.index') }}">
-                <i class="fas fa-sliders-h me-2"></i>Sliders
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.programs.index') }}">
-                <i class="fas fa-clipboard-list me-2"></i>Programs
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.events.index') }}">
-                <i class="fas fa-calendar-alt me-2"></i>Events
-            </a>
-        </div>
-        <hr class="nav-divider">
-        <!-- Content Management Section -->
-        <div class="nav-item mt-3">
-            <div class="nav-link text-muted small">
-                <i class="fas fa-edit me-2"></i>CONTENT MANAGEMENT
-            </div>
-        </div>
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.partners.index') }}">
-                <i class="fas fa-handshake me-2"></i>Partners
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.reports.index') }}">
-                <i class="fas fa-file-alt me-2"></i>Reports & Documents
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.footer-links.index') }}">
-                <i class="fas fa-link me-2"></i>Footer Links
-            </a>
-        </div>
-        <div class="nav-item">
-            <a href="{{ route('admin.startups.index') }}" class="nav-link">
-                <i class="fas fa-rocket me-2"></i>Startup Database
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-
-
-        <!-- Settings Section -->
-        <div class="nav-item mt-3">
-            <div class="nav-link text-muted small">
-                <i class="fas fa-cog me-2"></i>SETTINGS
-            </div>
-        </div>
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.general') }}">
-                <i class="fas fa-cogs me-2"></i>General Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <!-- Home Settings Subsection -->
-        <div class="nav-item mt-2">
-            <div class="nav-link text-muted small">
-                <i class="fas fa-home me-2"></i>HOME SETTINGS
-            </div>
-        </div>
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.homeFAQ') }}">
-                <i class="fas fa-question-circle me-2"></i>Home FAQ Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.home-objectives') }}">
-                <i class="fas fa-bullseye me-2"></i>Home Objectives
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.home-vision-goals-mission') }}">
-                <i class="fas fa-eye me-2"></i>Vision, Goals & Mission
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.home-statistics') }}">
-                <i class="fas fa-chart-line me-2"></i>Home Statistics
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.donation') }}">
-                <i class="fas fa-donate me-2"></i>Donation Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.fb') }}">
-                <i class="fab fa-facebook me-2"></i>FB Page Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.meta') }}">
-                <i class="fas fa-share-alt me-2"></i>Sharing Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.setting.contact') }}">
-                <i class="fas fa-phone me-2"></i>Contact Setting
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <!-- Membership Section -->
-        <div class="nav-item mt-3">
-            <div class="nav-link text-muted small">
-                <i class="fas fa-users me-2"></i>MEMBERSHIP
-            </div>
-        </div>
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.membership-content.index') }}">
-                <i class="fas fa-edit me-2"></i>Page Content
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.membership-applications.index') }}">
-                <i class="fas fa-user-check me-2"></i>Membership Applications
-            </a>
-        </div>
-        <hr class="nav-divider">
-
-
-        <div class="nav-item mt-3">
-            <div class="nav-link text-muted small">
-                <i class="fas fa-users me-2"></i>CSIC
-            </div>
-        </div>
-        <hr class="nav-divider">
-        <div class="nav-item">
+        @foreach ($groups as $title => $links)
             @php
-                $firstForm = App\Models\Form::first();
+                $id = 'nav-' . Str::slug($title);
+                $open = collect($links)->contains(fn($l) => $l[3]);
             @endphp
-            @if ($firstForm)
-                <a class="nav-link" href="{{ route('admin.admin_form_edit', $firstForm->id) }}">
-                    <i class="fas fa-wpforms me-2"></i>Registration Form
-                </a>
-            @endif
-        </div>
-        <hr class="nav-divider">
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.registration-applications.index') }}">
-                <i class="fas fa-file-alt me-2"></i>Registration Applications
-            </a>
-        </div>
-        <hr class="nav-divider">
-        <div class="nav-item">
-            <a class="nav-link" href="{{ route('admin.essential-files.index') }}">
-                <i class="fas fa-file-download me-2"></i>Essential Files
-            </a>
-        </div>
+            <button class="nav-group-title {{ $open ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse"
+                data-bs-target="#{{ $id }}" aria-expanded="{{ $open ? 'true' : 'false' }}" aria-controls="{{ $id }}">
+                {{ $title }}<i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="collapse {{ $open ? 'show' : '' }}" id="{{ $id }}">
+                @foreach ($links as [$label, $icon, $url, $active])
+                    <a class="nav-link {{ $active ? 'active' : '' }}" href="{{ $url }}" @if ($active) aria-current="page" @endif>
+                        <i class="fas {{ $icon }}"></i>{{ $label }}
+                    </a>
+                @endforeach
+            </div>
+        @endforeach
     </nav>
-</div>
-
-<style>
-    .admin-sidebar {
-        background: #2c3e50;
-        color: #ecf0f1;
-        min-height: 100vh;
-        padding: 20px 0;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .admin-sidebar h5 {
-        color: #f39c12;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 30px;
-        padding: 0 20px;
-        border-bottom: 2px solid #34495e;
-        padding-bottom: 15px;
-    }
-
-    .sidebar-nav {
-        padding: 0 10px;
-    }
-
-    .nav-item {
-        margin-bottom: 5px;
-    }
-
-    .nav-link {
-        color: #bdc3c7 !important;
-        text-decoration: none;
-        padding: 12px 20px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        display: block;
-        font-weight: 500;
-        border-left: 3px solid transparent;
-    }
-
-    .nav-link:hover {
-        background: #34495e;
-        color: #f39c12 !important;
-        transform: translateX(5px);
-        border-left-color: #f39c12;
-    }
-
-    .nav-link.active {
-        background: #f39c12;
-        color: #2c3e50 !important;
-        border-left-color: #e67e22;
-    }
-
-    .nav-link i {
-        width: 20px;
-        text-align: center;
-        margin-right: 10px;
-        font-size: 16px;
-    }
-
-    .nav-divider {
-        border: none;
-        height: 1px;
-        background: linear-gradient(to right, transparent, #34495e, transparent);
-        margin: 8px 20px;
-    }
-
-    .nav-link.text-muted {
-        background: #34495e;
-        color: #95a5a6 !important;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.85rem;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-        cursor: default;
-    }
-
-    .nav-link.text-muted:hover {
-        transform: none;
-        border-left-color: transparent;
-    }
-
-    /* Section styling for better organization */
-    .nav-section {
-        margin-bottom: 25px;
-    }
-
-    .nav-section-header {
-        background: #34495e;
-        padding: 10px 20px;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        border-left: 3px solid #f39c12;
-    }
-
-    .nav-section-title {
-        color: #f39c12;
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .admin-sidebar {
-            position: fixed;
-            left: -280px;
-            width: 280px;
-            z-index: 9999;
-            transition: left 0.3s ease;
-        }
-
-        .admin-sidebar.show {
-            left: 0;
-        }
-    }
-
-    /* Add hover effects for icons */
-    .nav-link:hover i {
-        transform: scale(1.1);
-        transition: transform 0.2s ease;
-    }
-
-    /* Special styling for Events link */
-    .nav-link[href*="events"] {
-        position: relative;
-    }
-
-    .nav-link[href*="events"]:after {
-        content: 'NEW';
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #e74c3c;
-        color: white;
-        font-size: 0.7rem;
-        padding: 2px 6px;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-</style>
+</aside>

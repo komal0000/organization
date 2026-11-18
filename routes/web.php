@@ -91,6 +91,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
         Route::match(['GET','POST'],'add',[SliderController::class,'add'])->name('add');
         Route::match(['GET','POST'],'edit/{slider}',[SliderController::class,'edit'])->name('edit');
         Route::get('del/{slider}',[SliderController::class,'del'])->name('del');
+        Route::post('toggle',[SliderController::class,'toggle'])->name('toggle');
     });
 
     Route::prefix('partners')->name('partners.')->group(function(){
@@ -186,10 +187,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','clr'])->group(functi
     Route::resource('membership-content', MembershipContentController::class);
 
     // Membership Applications Management
-    Route::resource('membership-applications', MembershipApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::resource('membership-applications', MembershipApplicationController::class)->only(['index', 'show', 'update', 'destroy'])->parameters(['membership-applications' => 'membership']);
 
     // Registration Applications Management
-    Route::resource('registration-applications', RegistrationApplicationController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::resource('registration-applications', RegistrationApplicationController::class)->only(['index', 'show', 'update', 'destroy'])->parameters(['registration-applications' => 'application']);
     Route::get('registration-applications-export', [RegistrationApplicationController::class, 'export'])->name('registration-applications.export');
 
     // Programs Management

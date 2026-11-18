@@ -21,7 +21,7 @@
                 <div class="admin-card-body">
                     @if($contents->count() > 0)
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table admin-table mb-0">
                                 <thead>
                                     <tr>
                                         <th width="60">Order</th>

@@ -2,8 +2,7 @@
 
 @section('head-title')
     <a href="{{ route('admin.registration-applications.index') }}">Registration Applications</a>
-    <span class="admin-breadcrumb-separator">></span>
-    <span>Application #{{ $application->id }}</span>
+    <a href="#">Application #{{ $application->id }}</a>
 @endsection
 
 @section('toolbar')
@@ -53,7 +52,7 @@
                 <div class="admin-card-body">
                     <!-- Form Information -->
                     <h5 class="border-bottom pb-2 mb-3">
-                        <i class="fas fa-wpforms me-2 text-primary"></i>Form Information
+                        <i class="fab fa-wpforms me-2 text-primary"></i>Form Information
                     </h5>
                     <div class="row mb-4">
                         <div class="col-md-6">

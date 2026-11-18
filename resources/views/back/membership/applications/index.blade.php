@@ -4,9 +4,22 @@
     <a href="#">Membership Applications</a>
 @endsection
 
-@section('toolbar')
-    <div class="d-flex gap-2">
-        <form method="GET" action="{{ route('admin.membership-applications.index') }}" class="d-flex gap-2">
+
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <i class="fas fa-users me-2"></i>Membership Applications
+                    <span class="badge bg-info ms-2">{{ $memberships->total() }} total</span>
+                    <div class="ms-auto d-flex gap-2">
+                        <span class="badge bg-warning">{{ $statusCounts['pending'] ?? 0 }} Pending</span>
+                        <span class="badge bg-success">{{ $statusCounts['approved'] ?? 0 }} Approved</span>
+                        <span class="badge bg-danger">{{ $statusCounts['rejected'] ?? 0 }} Rejected</span>
+                    </div>
+                </div>
+                <div class="admin-card-body">
+            <form method="GET" action="{{ route('admin.membership-applications.index') }}" class="admin-filter-bar">
             <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
                 <option value="">All Status</option>
                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
@@ -24,26 +37,10 @@
                 </a>
             @endif
         </form>
-    </div>
-@endsection
 
-@section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="admin-card">
-                <div class="admin-card-header">
-                    <i class="fas fa-users me-2"></i>Membership Applications
-                    <span class="badge bg-info ms-2">{{ $memberships->total() }} total</span>
-                    <div class="ms-auto d-flex gap-2">
-                        <span class="badge bg-warning">{{ $memberships->where('status', 'pending')->count() }} Pending</span>
-                        <span class="badge bg-success">{{ $memberships->where('status', 'approved')->count() }} Approved</span>
-                        <span class="badge bg-danger">{{ $memberships->where('status', 'rejected')->count() }} Rejected</span>
-                    </div>
-                </div>
-                <div class="admin-card-body">
                     @if($memberships->count() > 0)
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table admin-table mb-0">
                                 <thead>
                                     <tr>
                                         <th width="80">ID</th>
@@ -111,7 +108,7 @@
                                 Showing {{ $memberships->firstItem() }} to {{ $memberships->lastItem() }}
                                 of {{ $memberships->total() }} results
                             </div>
-                            {{ $memberships->links() }}
+                            {{ $memberships->appends(request()->query())->links('pagination::bootstrap-5') }}
                         </div>
                     @else
                         <div class="text-center py-4">

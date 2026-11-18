@@ -28,7 +28,7 @@
     <div class="admin-card-body">
                                 @if ($responses->count() > 0)
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="example1">
+                                        <table class="table admin-table mb-0" id="example1">
                                             <thead>
                                                 <tr>
                                                     <th>SL</th>
