@@ -9,7 +9,7 @@ class LoginController extends Controller
 {
     public function login(Request $request){
         if(Auth::check()){
-            redirect()->route('admin.index');
+            return redirect()->route('admin.index');
         }
         if(isGet()){
             $email=mt_rand(1111,9999);
