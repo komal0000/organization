@@ -160,6 +160,7 @@
             color: var(--org-white);
             font-family: var(--org-font-two);
             display: block;
+            padding: 8px 0px;
         }
 
     }
@@ -196,9 +197,22 @@
         }
         .navbar-top{
             justify-content: center;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            padding: 0px 10px;
         }
         .navbar-bottom{
             border-top-left-radius: 0px;
+            padding-left: 0px;
+            flex-wrap: wrap;
+            justify-content: center;
+            .link{
+                padding: 10px;
+            }
+            #donate{
+                width: auto;
+                padding: 0px 20px;
+            }
         }
     }
 }

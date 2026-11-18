@@ -309,6 +309,15 @@
             width: 100%;
             justify-content: center;
         }
+
+        .progress-step {
+            padding: 15px 5px;
+            min-width: 0;
+        }
+
+        .form-section {
+            padding: 25px 15px;
+        }
     }
 </style>
 @endsection

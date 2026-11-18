@@ -17,9 +17,7 @@
                 <th>Name of Firm</th>
                 <th>Project Name</th>
                 <th>Year</th>
-                <th>Size</th>
                 <th>Location</th>
-                <th>Gender</th>
                 <th>Sector</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -32,9 +30,7 @@
                 <td>{{$startup->name_of_firm}}</td>
                 <td>{{$startup->project_name ?? '-'}}</td>
                 <td>{{$startup->year_of_operation}}</td>
-                <td>{{$startup->size_of_company}}</td>
                 <td>{{$startup->location_of_firm}}</td>
-                <td>{{$startup->gender_of_entrepreneurs}}</td>
                 <td>{{$startup->sector ?? '-'}}</td>
                 <td>
                     <span class="badge bg-{{$startup->status_of_firm == 'Active' ? 'success' : 'secondary'}}">
@@ -52,7 +48,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="10" class="text-center text-muted">No startups found. Add your first startup!</td>
+                <td colspan="8" class="text-center text-muted">No startups found. Add your first startup!</td>
             </tr>
             @endforelse
         </tbody>

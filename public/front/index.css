@@ -199,6 +199,7 @@ body {
   color: var(--org-white);
   font-family: var(--org-font-two);
   display: block;
+  padding: 8px 0px;
 }
 .sidebar .exit {
   transition: 2s all;
@@ -231,9 +232,22 @@ body {
   }
   .navbar .navbar-top {
     justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding: 0px 10px;
   }
   .navbar .navbar-bottom {
     border-top-left-radius: 0px;
+    padding-left: 0px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navbar .navbar-bottom .link {
+    padding: 10px;
+  }
+  .navbar .navbar-bottom #donate {
+    width: auto;
+    padding: 0px 20px;
   }
 }
 @media (max-width: 768px) {
